@@ -1,5 +1,3 @@
-import pickle
-
 class Unit(object):
 	"""Defines a unit type"""
 	pass
@@ -81,13 +79,29 @@ class Template(object):
 		serializes data into xml format"""
 	def __init__(self, data = None):
 		if data is not None:
+			import pickle
 			new_template = pickle.loads(data)
 			self.__dict__.update(new_template.__dict__)
+			self._data = Matrix()
 			return
 		
 		self._contexts = []
 		self._facts = []
 		self._data = Matrix()
+	
+	def pickle(self):
+		import pickle
+		from contextlib import contextmanager
+
+		@contextmanager
+		def no_data_context():
+			data_backup = self._data
+			del self._data
+			yield
+			self._data = data_backup
+		
+		with no_data_context():
+			return pickle.dumps(self)
 	
 	@property
 	def contexts(self):
@@ -110,6 +124,14 @@ class Template(object):
 				temp_row.append(self._data[row_idx, col_idx])
 			temp_data.append(temp_row)
 		return temp_data
+	
+	def pretty_data(self):
+		return '\n'.join(
+			'\t'.join(
+				item is None and '-' or item.__repr__() for item in row
+			)
+			for row in self.data
+		)
 
 	def get_row_col(self, fact, unit, context):
 		row = self._facts.index((fact, unit))
@@ -187,4 +209,4 @@ class Template(object):
 		
 		del self._contexts[col]
 		del self._data[None, col]
-	
+
