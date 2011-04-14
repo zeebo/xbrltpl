@@ -80,6 +80,6 @@ class Serializer(object):
 
 		return formatter(data)
 	
-	def serialized_docs(self, company, formatter=lxml_to-text, date=None):
+	def serialized_docs(self, company, formatter=lxml_to_text, date=None):
 		for document in self.determine_files():
 			yield self.document_name(document, date), self.serialize(company, document, formatter=formatter)
