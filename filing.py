@@ -1,6 +1,8 @@
 from template import Template
 from datas.matrix import Matrix
 
+#Filing object contains _ALL_ the data for a specific filing.
+
 class Filing(object):
 	"""Filing class holds a template and data to go in it"""
 
