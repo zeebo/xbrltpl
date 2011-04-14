@@ -6,7 +6,16 @@ class Matrix(object):
 		self._data = [[]]
 		self.default = default
 	
+	def _check_index(self, index):
+		if index[0] < 0 or index[1] < 0:
+			raise IndexError('Must be non-negative indicies')
+		
+		if len(index) > 2:
+			raise IndexError('Indicies must be two dimensional')
+		
+	
 	def __getitem__(self, index):
+		self._check_index(index)
 		row, col = index
 		try:
 			return self._data[row][col]
@@ -14,6 +23,7 @@ class Matrix(object):
 			return self.default
 	
 	def __setitem__(self, index, data):
+		self._check_index(index)
 		row, col = index
 		try:
 			self._data[row][col] = data
@@ -23,6 +33,7 @@ class Matrix(object):
 			self[row, col] = data
 	
 	def __delitem__(self, index):
+		self._check_index(index)
 		#First determine if we're deleting a single index, a row, or a column
 		#deleting a column is worst perfoming.
 		row, col = index
