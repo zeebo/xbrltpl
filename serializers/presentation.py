@@ -1,2 +1,2 @@
-def presentation_serializer(filing, company):
+def presentation_serializer(filing, company, serializer):
 	pass

@@ -1,2 +1,2 @@
-def definition_serializer(filing, company):
+def definition_serializer(filing, company, serializer):
 	pass

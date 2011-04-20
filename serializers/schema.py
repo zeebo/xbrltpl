@@ -1,2 +1,2 @@
-def schema_serializer(filing, company):
+def schema_serializer(filing, company, serializer):
 	pass

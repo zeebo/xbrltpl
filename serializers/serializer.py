@@ -33,18 +33,20 @@ NAME_MAP = {
 
 def lxml_to_text(nodes):
 	"""Takes the lxml nodes and turns it into text"""
-	return ''
+
+	#no implementation so do nothing!
+	return nodes
 
 class Serializer(object):
 	def __init__(self, filing):
 		assert isinstance(filing, Filing)
 		self.filing = filing
 	
-	def format_date(self, given_date):
+	def format_date(self, given_date=None):
 		if given_date is None:
 			given_date = date.today()
 		
-		return '%d%d%d' % given_date.timetuple()[:3]
+		return '{0}{1}{2}'.format(*given_date.timetuple()[:3])
 	
 	def document_name(self, document, company, date=None):
 		#Determined by SEC on http://sec.gov/info/edgar/edgarfm-vol2-v16.pdf
@@ -64,6 +66,7 @@ class Serializer(object):
 	def determine_files(self):
 		"""Determines the documents that must be created
 		for a valid sec filing."""
+		return []
 	
 	def serialize(self, company, document, formatter=lxml_to_text):
 		"""Returns the serialized xml data in the specified format.
@@ -76,7 +79,7 @@ class Serializer(object):
 		"""
 
 		document_serializer = NAME_MAP[document]
-		data = document_serializer(filing=self.filing, company=company)
+		data = document_serializer(filing=self.filing, company=company, serializer=self)
 
 		return formatter(data)
 	

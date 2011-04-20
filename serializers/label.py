@@ -1,2 +1,2 @@
-def label_serializer(filing, company):
+def label_serializer(filing, company, serializer):
 	pass
