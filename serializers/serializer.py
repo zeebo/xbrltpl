@@ -46,7 +46,7 @@ class Serializer(object):
 		if given_date is None:
 			given_date = date.today()
 		
-		return '{0}{1}{2}'.format(*given_date.timetuple()[:3])
+		return given_date.strftime('%Y%m%d')
 	
 	def document_name(self, document, company, date=None):
 		#Determined by SEC on http://sec.gov/info/edgar/edgarfm-vol2-v16.pdf
