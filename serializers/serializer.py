@@ -44,7 +44,7 @@ class Serializer(object):
 	
 	def format_date(self, given_date=None):
 		if given_date is None:
-			given_date = date.today()
+			given_date = self.filing.date
 		
 		return given_date.strftime('%Y%m%d')
 	
@@ -68,7 +68,7 @@ class Serializer(object):
 		for a valid sec filing."""
 		return []
 	
-	def serialize(self, company, document, formatter=lxml_to_text):
+	def serialize(self, document, formatter=lxml_to_text):
 		"""Returns the serialized xml data in the specified format.
 
 		arguments:
@@ -83,6 +83,6 @@ class Serializer(object):
 
 		return formatter(data)
 	
-	def serialized_docs(self, company, formatter=lxml_to_text, date=None):
+	def serialized_docs(self, formatter=lxml_to_text, date=None):
 		for document in self.determine_files():
-			yield self.document_name(document, date), self.serialize(company, document, formatter=formatter)
+			yield self.document_name(document, date), self.serialize(document, formatter=formatter)
