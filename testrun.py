@@ -26,7 +26,7 @@ t.add_context(c3)
 t.add_fact(f1, u1)
 t.add_fact(f2, u2)
 
-f = Filing(with_template=t)
+f = Filing(with_template=t, company=Company)
 
 from lxml import etree
 def pp(x):

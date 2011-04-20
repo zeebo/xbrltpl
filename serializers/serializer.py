@@ -79,7 +79,7 @@ class Serializer(object):
 		"""
 
 		document_serializer = NAME_MAP[document]
-		data = document_serializer(filing=self.filing, company=company, serializer=self)
+		data = document_serializer(filing=self.filing, serializer=self)
 
 		return formatter(data)
 	

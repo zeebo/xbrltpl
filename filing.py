@@ -1,12 +1,12 @@
 from template import Template
 from datas.matrix import Matrix
-
+import datetime
 #Filing object contains _ALL_ the data for a specific filing.
 
 class Filing(object):
 	"""Filing class holds a template and data to go in it"""
 
-	def __init__(self, with_template=None, with_data=None):
+	def __init__(self, with_template=None, with_data=None, date=None, company=None):
 		if with_template is not None:
 			self._template = with_template
 		else:
@@ -16,6 +16,18 @@ class Filing(object):
 			self._data = with_data
 		else:
 			self._data = Matrix()
+		
+		if date is None:
+			self.date = datetime.date.today()
+		else:
+			self.date = date
+		
+		if company is None:
+			class Company(object):
+				pass
+			self.company = Company
+		else:
+			self.company = company
 	
 	def pickle(self):
 		import pickle
