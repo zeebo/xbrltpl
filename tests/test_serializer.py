@@ -6,4 +6,5 @@ class SerializerTest(TestCase):
 		pass
 	
 	def test_imports(self):
+		#passing test to just check if the actual class imports!
 		pass

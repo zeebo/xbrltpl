@@ -35,28 +35,22 @@ class Template(object):
 		return self.facts[row], self.facts[col]
 	
 	def add_fact(self, fact, unit):
-		if isinstance(fact, BaseFact) and isinstance(unit, Unit):
-			self._facts.append( (fact, unit) )
-		else:
-			raise ValueError("Not passed fact/unit pair")
+		assert isinstance(fact, BaseFact)
+		assert isinstance(unit, Unit)
+		self._facts.append( (fact, unit) )
 	
 	def add_context(self, context):
-		if isinstance(context, Context):
-			self._contexts.append(context)
-		else:
-			raise ValueError("Not passed a context")
+		assert isinstance(context, Context)
+		self._contexts.append(context)
 	
 	def insert_fact(self, idx, fact, unit):
-		if isinstance(fact, Fact) and isinstance(unit, Unit):
-			self._facts.insert(idx, (fact, unit))
-		else:
-			raise ValueError("Not passed fact/unit pair")
+		assert isinstance(fact, BaseFact)
+		assert isinstance(unit, Unit)
+		self._facts.insert(idx, (fact, unit))
 	
 	def insert_context(self, idx, context):
-		if isinstance(context, Context):
-			self._contexts.append(context)
-		else:
-			raise ValueError("Not passed a context")
+		assert isinstance(context, Context)
+		self._contexts.insert(idx, context)
 	
 	def del_fact(self, index):
 		row = index

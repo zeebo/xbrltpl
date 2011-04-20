@@ -66,13 +66,15 @@ class Serializer(object):
 	def determine_files(self):
 		"""Determines the documents that must be created
 		for a valid sec filing."""
-		return []
+		others = []
+		return ['Instance', 'Schema'] + others
 	
 	def serialize(self, document, formatter=lxml_to_text):
 		"""Returns the serialized xml data in the specified format.
 
 		arguments:
-			name:		type	description
+			name		type	description
+			-------------------------------
 			company:	Company	Company object (django model)
 			document:	string	Name of document to be serialized (returned by determine_files)
 			formatter:	(func)	Formatter. Should take lxml nodes as input, and return whatever. If you want lxml nodes, use (lambda x: x)

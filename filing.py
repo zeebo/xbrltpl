@@ -69,8 +69,7 @@ class Filing(object):
 		return (row, col)
 	
 	def _transform_index(self, index):
-		if not isinstance(index, tuple):
-			raise KeyError('Invalid key')
+		assert isinstance(index, tuple)
 		row, col = index
 		if isinstance(row, tuple):
 			#We have a get based on things

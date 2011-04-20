@@ -13,10 +13,10 @@ class MatrixTest(TestCase):
 		self.assertEqual(self.m[0,0], 0)
 
 	def test_sets(self):
-		#perform 1000 random index lookups
+		#perform 30 random index lookups
 		indicies = set([])
-		while len(indicies) < 1000:
-			indicies.add(( random.randint(0,1000), random.randint(0, 1000) ))
+		while len(indicies) < 30:
+			indicies.add(( random.randint(0,50), random.randint(0, 50) ))
 		for e, (a,b) in enumerate(indicies):
 			self.assertEqual(self.m[a,b], None)
 			self.m[a,b] = e
