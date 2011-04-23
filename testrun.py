@@ -27,6 +27,12 @@ t.add_fact(f1, u1)
 t.add_fact(f2, u2)
 
 f = Filing(with_template=t, company=Company)
+f[(f1, u1), c1] = 100
+f[(f1, u1), c2] = 200
+f[(f1, u1), c3] = 300
+f[(f2, u2), c1] = 400
+f[(f2, u2), c2] = 500
+f[(f2, u2), c3] = 600
 
 from lxml import etree
 def pp(x):

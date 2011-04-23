@@ -17,17 +17,17 @@ class Filing(object):
 		else:
 			self._data = Matrix()
 		
-		if date is None:
-			self.date = datetime.date.today()
-		else:
+		if date is not None:
 			self.date = date
+		else:
+			self.date = datetime.date.today()
 		
-		if company is None:
+		if company is not None:
+			self.company = company
+		else:
 			class Company(object):
 				pass
 			self.company = Company
-		else:
-			self.company = company
 	
 	def pickle(self):
 		import pickle
@@ -36,12 +36,18 @@ class Filing(object):
 	@property
 	def data(self):
 		temp_data = []
-		for row_idx, (fact, unit) in enumerate(self._facts):
+		for row_idx, (fact, unit) in enumerate(self._template.facts):
 			temp_row = []
-			for col_idx, context in enumerate(self._contexts):
+			for col_idx, context in enumerate(self._template.contexts):
 				temp_row.append(self._data[row_idx, col_idx])
 			temp_data.append(temp_row)
 		return temp_data
+	
+	@property
+	def data_stream(self):
+		for row_idx, (fact, unit) in enumerate(self._template.facts):
+			for col_idx, context in enumerate(self._template.contexts):
+				yield fact, self._data[row_idx, col_idx]
 	
 	@property
 	def contexts(self):
@@ -64,8 +70,8 @@ class Filing(object):
 		)
 	
 	def get_row_col(self, fact, unit, context):
-		row = self._facts.index((fact, unit))
-		col = self._contexts.index(context)
+		row = self._template.facts.index((fact, unit))
+		col = self._template.contexts.index(context)
 		return (row, col)
 	
 	def _transform_index(self, index):
@@ -91,21 +97,3 @@ class Filing(object):
 	def __delitem__(self, index):
 		row, col = self._transform_index(index)
 		self._data[row, col] = self._data.default
-	
-	def del_fact(self, index):
-		row = index
-		try:
-			row = self._template._facts.index(index)
-		except ValueError:
-			pass
-		self._template.del_fact(row)
-		del self._data[row, None]
-
-	def del_context(self, index):
-		col = index
-		try:
-			col = self._template._contexts.index(index)
-		except ValueError:
-			pass
-		self._template.del_context(col)
-		del self._data[None, row]
