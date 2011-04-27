@@ -91,3 +91,11 @@ class Serializer(object):
 	def serialized_docs(self, formatter=lxml_to_text):
 		for document in self.determine_files():
 			yield self.document_name(document), self.serialize(document, formatter=formatter)
+	
+	def namespaces_for(document):
+		#queries self.filing to figure out what namespaces will be defined
+		#in the document. for now return the company namespace
+		nsmap = {}
+
+		nsmap[self.filing.company.ticker] = '{0}{1}'.format(self.filing.company.url, self.date)
+		return nsmap
