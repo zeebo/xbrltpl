@@ -48,7 +48,11 @@ class Serializer(object):
 		
 		return given_date.strftime('%Y%m%d')
 	
-	def document_name(self, document, company, date=None):
+	@property
+	def date(self):
+		return self.format_date()
+	
+	def document_name(self, document):
 		#Determined by SEC on http://sec.gov/info/edgar/edgarfm-vol2-v16.pdf
 		#page 221 (6-5), section 6.6.3
 		template_map = {
@@ -61,12 +65,12 @@ class Serializer(object):
 		}
 
 		template = template_map[document]
-		return template.format(company.ticker, self.format_date(date))
+		return template.format(self.filing.company.ticker, self.date)
 
 	def determine_files(self):
 		"""Determines the documents that must be created
 		for a valid sec filing."""
-		others = ['Calculation', 'Label', 'Presentation']
+		others = []
 		return ['Instance', 'Schema'] + others
 	
 	def serialize(self, document, formatter=lxml_to_text):
@@ -75,7 +79,6 @@ class Serializer(object):
 		arguments:
 			name		type	description
 			-------------------------------
-			company:	Company	Company object (django model)
 			document:	string	Name of document to be serialized (returned by determine_files)
 			formatter:	(func)	Formatter. Should take lxml nodes as input, and return whatever. If you want lxml nodes, use (lambda x: x)
 		"""
@@ -85,6 +88,6 @@ class Serializer(object):
 
 		return formatter(data)
 	
-	def serialized_docs(self, formatter=lxml_to_text, date=None):
+	def serialized_docs(self, formatter=lxml_to_text):
 		for document in self.determine_files():
-			yield self.document_name(document, date), self.serialize(document, formatter=formatter)
+			yield self.document_name(document), self.serialize(document, formatter=formatter)
