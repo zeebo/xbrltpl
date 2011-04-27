@@ -3,7 +3,7 @@ from lxml_helpers.helpers import xml_namespace, convert_attribs
 from common import gen_nsmap
 import datetime
 
-def instance_serializer(filing, serializer):
+def instance_serializer(serializer):
 	#looks like
 	#<xbrli:xbrl [namespaces]>
 	#<link:schemaRef to xsd document>
@@ -11,9 +11,10 @@ def instance_serializer(filing, serializer):
 	#[<units>]
 	#[<facts>]
 	#</xbrli:xbrl>
+	filing = serializer.filing
 	date = filing.date
 	company = filing.company
-	nsmap = gen_nsmap(filing,)
+	nsmap = gen_nsmap(filing, 'Instance')
 	maker = ElementMaker(namespace=nsmap['xbrli'], nsmap=nsmap)
 
 	xbrl = maker.xbrl()

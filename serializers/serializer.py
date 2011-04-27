@@ -52,21 +52,21 @@ class Serializer(object):
 		#Determined by SEC on http://sec.gov/info/edgar/edgarfm-vol2-v16.pdf
 		#page 221 (6-5), section 6.6.3
 		template_map = {
-			'Instance': '%s-%s.xml',
-			'Schema': '%s-%s.xsd',
-			'Calculation': '%s-%s_cal.xml',
-			'Definition': '%s-%s_def.xml',
-			'Label': '%s-%s_lab.xml',
-			'Presentation': '%s-%s_pre.xml',
+			'Instance': '{0}-{1}.xml',
+			'Schema': '{0}-{1}.xsd',
+			'Calculation': '{0}-{1}_cal.xml',
+			'Definition': '{0}-{1}_def.xml',
+			'Label': '{0}-{1}_lab.xml',
+			'Presentation': '{0}-{1}_pre.xml',
 		}
 
 		template = template_map[document]
-		return template % (company.ticker, self.format_date(date))
+		return template.format(company.ticker, self.format_date(date))
 
 	def determine_files(self):
 		"""Determines the documents that must be created
 		for a valid sec filing."""
-		others = []
+		others = ['Calculation', 'Label', 'Presentation']
 		return ['Instance', 'Schema'] + others
 	
 	def serialize(self, document, formatter=lxml_to_text):
@@ -81,7 +81,7 @@ class Serializer(object):
 		"""
 
 		document_serializer = NAME_MAP[document]
-		data = document_serializer(filing=self.filing, serializer=self)
+		data = document_serializer(serializer=self)
 
 		return formatter(data)
 	

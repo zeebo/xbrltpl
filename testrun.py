@@ -33,4 +33,4 @@ def pp(x):
 	print etree.tostring(x, pretty_print=True)
 
 s = Serializer(f)
-pp(s.serialize('Instance'))
+pp(s.serialize('Schema'))
