@@ -9,6 +9,7 @@ from schema import schema_serializer
 from datetime import date
 
 import lxml
+from lxml import etree
 
 #Serializer determines which files need to be serialized and dispatches
 #to the appropriate objects that serialize that type of file with a
@@ -33,9 +34,11 @@ NAME_MAP = {
 
 def lxml_to_text(nodes):
 	"""Takes the lxml nodes and turns it into text"""
+	return etree.tostring(nodes, pretty_print=True)
 
-	#no implementation so do nothing!
-	return nodes
+def nodes(x):
+	"""Do-nothing function. lambda x: x"""
+	return x
 
 class Serializer(object):
 	def __init__(self, filing):
@@ -73,7 +76,7 @@ class Serializer(object):
 		others = []
 		return ['Instance', 'Schema'] + others
 	
-	def serialize(self, document, formatter=lxml_to_text):
+	def serialize(self, document, formatter=nodes):
 		"""Returns the serialized xml data in the specified format.
 
 		arguments:
@@ -88,7 +91,7 @@ class Serializer(object):
 
 		return formatter(data)
 	
-	def serialized_docs(self, formatter=lxml_to_text):
+	def serialized_docs(self, formatter=nodes):
 		for document in self.determine_files():
 			yield self.document_name(document), self.serialize(document, formatter=formatter)
 	
