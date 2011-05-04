@@ -21,7 +21,7 @@ def instance_serializer(serializer):
 	with xml_namespace(maker, 'link'):
 		schemaRef = maker.schemaRef(**convert_attribs({
 			'xlink:type': 'simple',
-			'xlink:href': serializer.document_name('Schema', company),
+			'xlink:href': serializer.document_name('Schema'),
 		}, nsmap))
 	
 	xbrl.append(schemaRef)

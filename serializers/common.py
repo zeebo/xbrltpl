@@ -1,3 +1,14 @@
+def convert_role_url(role, filing):
+	if role.startswith('http'):
+		return role
+	
+	return '{0}/role/{1}'.format(filing_url(filing), role)
+
+def filing_url(filing):
+	#Example:
+	# 'isdr': 'http://issuerdirect.com/20110620',
+	return '{0}{1}'.format(filing.company.url, filing.date)
+
 def gen_nsmap(filing, document):
 	nsmap = {
 		'Instance':{
@@ -42,7 +53,5 @@ def gen_nsmap(filing, document):
 			'xbrli': "http://www.xbrl.org/2003/instance",
 		}
 	}[document]
-	#Example:
-	# 'isdr': 'http://issuerdirect.com/20110620',
-	nsmap[filing.company.ticker] = '{0}{1}'.format(filing.company.url, filing.date)
+	nsmap[filing.company.ticker] = filing_url(filing)
 	return nsmap

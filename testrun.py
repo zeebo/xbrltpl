@@ -1,5 +1,6 @@
 from template import Template
 from filing import Filing
+from chart import Chart
 from datas.context import make_context
 from datas.unit import Unit
 from datas.fact import Fact
@@ -26,16 +27,17 @@ t.add_context(c3)
 t.add_fact(f1, u1)
 t.add_fact(f2, u2)
 
-f = Filing(with_template=t, company=Company)
-f[(f1, u1), c1] = 100
-f[(f1, u1), c2] = 200
-f[(f1, u1), c3] = 300
-f[(f2, u2), c1] = 400
-f[(f2, u2), c2] = 500
-f[(f2, u2), c3] = 600
+c = Chart(with_template=t)
+c[(f1, u1), c1] = 100
+c[(f1, u1), c2] = 200
+c[(f1, u1), c3] = 300
+c[(f2, u2), c1] = 400
+c[(f2, u2), c2] = 500
+c[(f2, u2), c3] = 600
+
+f = Filing(with_charts=[c], with_company=Company)
 
 from lxml import etree
 
 
 s = Serializer(f)
-print s.serialize('Schema', formatter=lxml_to_text)

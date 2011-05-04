@@ -1,15 +1,39 @@
 import contextlib
 
 @contextlib.contextmanager
-def xml_namespace(maker, ns):
+def xml_namespace(maker, ns, auto_convert=False):
 	old = maker._namespace
-	maker._namespace = '{{{0}}}'.format(maker._nsmap[ns])
-	yield
+	if ns is None:
+		maker._namespace = ''
+	else:
+		maker._namespace = '{{{0}}}'.format(maker._nsmap[ns])
+	
+	if auto_convert:
+		yield Wrapper(maker)
+	else:
+		yield maker
 	maker._namespace = old
 
+def kwarg_wrapper(func, maker):
+	def dec(*args, **kwargs):
+		return func(*args, **convert_attribs(kwargs, maker._nsmap))
+	return dec
+
+class Wrapper(object):
+	def __init__(self, maker):
+		self._maker = maker
+	def __getattr__(self, *args, **kwargs):
+		return kwarg_wrapper(self._maker.__getattr__(*args, **kwargs), self._maker)
+
+@contextlib.contextmanager
+def auto_convert(maker):
+	yield Wrapper(maker)
+
 def make_attrib(attrib, nsmap):
-	parts = attrib.split(':')
-	return '{{{0}}}{1}'.format(nsmap[parts[0]], parts[1])
+	if ':' in attrib:
+		parts = attrib.split(':')
+		return '{{{0}}}{1}'.format(nsmap[parts[0]], parts[1])
+	return attrib
 
 def convert_attribs(attribs, nsmap):
 	new_attribs = {}

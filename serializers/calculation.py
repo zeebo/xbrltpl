@@ -1,2 +1,2 @@
-def calculation_serializer(filing, serializer):
+def calculation_serializer(serializer):
 	pass
