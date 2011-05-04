@@ -9,6 +9,7 @@ from schema import schema_serializer
 from datetime import date
 
 import lxml
+from lxml import etree
 
 #Serializer determines which files need to be serialized and dispatches
 #to the appropriate objects that serialize that type of file with a
@@ -33,9 +34,11 @@ NAME_MAP = {
 
 def lxml_to_text(nodes):
 	"""Takes the lxml nodes and turns it into text"""
+	return etree.tostring(nodes, pretty_print=True)
 
-	#no implementation so do nothing!
-	return nodes
+def nodes(x):
+	"""Do-nothing function. lambda x: x"""
+	return x
 
 class Serializer(object):
 	def __init__(self, filing):
@@ -48,20 +51,24 @@ class Serializer(object):
 		
 		return given_date.strftime('%Y%m%d')
 	
-	def document_name(self, document, company, date=None):
+	@property
+	def date(self):
+		return self.format_date()
+	
+	def document_name(self, document):
 		#Determined by SEC on http://sec.gov/info/edgar/edgarfm-vol2-v16.pdf
 		#page 221 (6-5), section 6.6.3
 		template_map = {
-			'Instance': '%s-%s.xml',
-			'Schema': '%s-%s.xsd',
-			'Calculation': '%s-%s_cal.xml',
-			'Definition': '%s-%s_def.xml',
-			'Label': '%s-%s_lab.xml',
-			'Presentation': '%s-%s_pre.xml',
+			'Instance': '{0}-{1}.xml',
+			'Schema': '{0}-{1}.xsd',
+			'Calculation': '{0}-{1}_cal.xml',
+			'Definition': '{0}-{1}_def.xml',
+			'Label': '{0}-{1}_lab.xml',
+			'Presentation': '{0}-{1}_pre.xml',
 		}
 
 		template = template_map[document]
-		return template % (company.ticker, self.format_date(date))
+		return template.format(self.filing.company.ticker, self.date)
 
 	def determine_files(self):
 		"""Determines the documents that must be created
@@ -69,22 +76,29 @@ class Serializer(object):
 		others = []
 		return ['Instance', 'Schema'] + others
 	
-	def serialize(self, document, formatter=lxml_to_text):
+	def serialize(self, document, formatter=nodes):
 		"""Returns the serialized xml data in the specified format.
 
 		arguments:
 			name		type	description
 			-------------------------------
-			company:	Company	Company object (django model)
 			document:	string	Name of document to be serialized (returned by determine_files)
 			formatter:	(func)	Formatter. Should take lxml nodes as input, and return whatever. If you want lxml nodes, use (lambda x: x)
 		"""
 
 		document_serializer = NAME_MAP[document]
-		data = document_serializer(filing=self.filing, serializer=self)
+		data = document_serializer(serializer=self)
 
 		return formatter(data)
 	
-	def serialized_docs(self, formatter=lxml_to_text, date=None):
+	def serialized_docs(self, formatter=nodes):
 		for document in self.determine_files():
-			yield self.document_name(document, date), self.serialize(document, formatter=formatter)
+			yield self.document_name(document), self.serialize(document, formatter=formatter)
+	
+	def namespaces_for(document):
+		#queries self.filing to figure out what namespaces will be defined
+		#in the document. for now return the company namespace
+		nsmap = {}
+
+		nsmap[self.filing.company.ticker] = '{0}{1}'.format(self.filing.company.url, self.date)
+		return nsmap

@@ -3,7 +3,7 @@ from filing import Filing
 from datas.context import make_context
 from datas.unit import Unit
 from datas.fact import Fact
-from serializers.serializer import Serializer
+from serializers.serializer import Serializer, lxml_to_text
 import datetime
 
 class Company(object):
@@ -35,8 +35,7 @@ f[(f2, u2), c2] = 500
 f[(f2, u2), c3] = 600
 
 from lxml import etree
-def pp(x):
-	print etree.tostring(x, pretty_print=True)
+
 
 s = Serializer(f)
-pp(s.serialize('Instance'))
+print s.serialize('Schema', formatter=lxml_to_text)
