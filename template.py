@@ -48,15 +48,28 @@ class Template(object):
 	
 	def walk_tree(self):
 		return [(self.find_parent(item), item) for item in self.rows]
-
+	
+	def ordered_yield(self, root=None):
+		for child in self._tree[root]:
+			yield child
+			if child in self._tree:
+				for i in ordered_yield(root=child):
+					yield i
+	
+	def ordered_tree(self):
+		return list(self.ordered_yield())
+	
+	def get_index(self, child):
+		return list(self.ordered_yield).index(child)
+	
 	def find_parent(self, child):
 		for parent, children in self._tree.items():
 			if child in children:
 				return parent
-
+	
 	def find_children(self, parent):
 		return self._tree[parent]
-
+	
 	def add_fact(self, fact, unit, parent=None):
 		assert isinstance(fact, BaseFact)
 		assert isinstance(unit, Unit)
@@ -76,7 +89,7 @@ class Template(object):
 		self._tree[parent].remove(child)
 		if parent is not None and child in self._tree:
 			del self._tree[child]
-		
+	
 	#Context related functions
 	def add_context(self, context):
 		assert isinstance(context, Context)

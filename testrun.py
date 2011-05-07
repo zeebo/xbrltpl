@@ -29,11 +29,11 @@ t.add_fact(f2, u2)
 
 c = Chart(with_template=t)
 c[(f1, u1), c1] = 100
-c[(f1, u1), c2] = 200
-c[(f1, u1), c3] = 300
-c[(f2, u2), c1] = 400
-c[(f2, u2), c2] = 500
-c[(f2, u2), c3] = 600
+c[0, c2] = 200
+c[(f1, u1), 2] = 300
+c[1, 0] = 400
+c[1, c2] = 500
+c[1, c3] = 600
 
 f = Filing(with_charts=[c], with_company=Company)
 
