@@ -14,6 +14,7 @@ class Template(object):
 		
 		self._contexts = []
 		self._facts = []
+		self._tree = {}
 	
 	def pickle(self):
 		import pickle
@@ -31,41 +32,62 @@ class Template(object):
 	def units(self):
 		return list(set(unit for fact, unit in self._facts))
 	
-	def get_cell_info(self, row, col):
-		return self.facts[row], self.facts[col]
+	def walk_facts(self):
+		for child in self._facts:
+			yield (self.find_parent(child), child)
 	
-	def add_fact(self, fact, unit):
+	def find_parent(self, child):
+		return self._tree[child]
+	
+	def find_children(self, parent):
+		children = []
+		for child in self._tree:
+			if self.find_parent(child) == parent:
+				children.append(child)
+		return children
+
+	def add_relationship(self, parent, child):
+		self._tree[child] = parent
+	
+	def del_relationship(self, child):
+		parent = self.find_parent(child)
+		for some_child in self.find_children(child):
+			self.add_relationship(parent, some_child)
+		del self._tree[child]
+	
+	def add_fact(self, fact, unit, parent=None):
 		assert isinstance(fact, BaseFact)
 		assert isinstance(unit, Unit)
 		self._facts.append( (fact, unit) )
+		self.add_relationship(parent, (fact, unit) )
 	
 	def add_context(self, context):
 		assert isinstance(context, Context)
 		self._contexts.append(context)
 	
-	def insert_fact(self, idx, fact, unit):
+	def insert_fact(self, idx, fact, unit, parent=None):
 		assert isinstance(fact, BaseFact)
 		assert isinstance(unit, Unit)
 		self._facts.insert(idx, (fact, unit))
+		self.add_relationship(parent, (fact, unit) )
 	
 	def insert_context(self, idx, context):
 		assert isinstance(context, Context)
 		self._contexts.insert(idx, context)
 	
 	def del_fact(self, index):
-		row = index
 		try:
-			row = self._facts.index(index)
+			index = self._facts.index(index)
 		except ValueError:
 			pass
 		
-		del self._facts[row]
+		self.del_relationship(self._facts[index])
+		del self._facts[index]
 	
 	def del_context(self, index):
-		col = index
 		try:
-			col = self._contexts.index(index)
+			index = self._contexts.index(index)
 		except ValueError:
 			pass
 		
-		del self._contexts[col]
+		del self._contexts[index]
