@@ -1,6 +1,8 @@
 class Matrix(object):
 	"""Creates a 2d matrix that has operations to remove rows
-		columns and grow/shrink without having to worry about it"""
+		columns and grow/shrink without having to worry about it
+
+		Deprecated because of tree based facts"""
 	
 	def __init__(self, default=None):
 		self._data = [[]]

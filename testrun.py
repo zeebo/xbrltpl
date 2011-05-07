@@ -37,7 +37,5 @@ c[(f2, u2), c3] = 600
 
 f = Filing(with_charts=[c], with_company=Company)
 
-from lxml import etree
-
-
 s = Serializer(f)
+print s.serialize('Instance', formatter=lxml_to_text)

@@ -35,7 +35,7 @@ def instance_serializer(serializer):
 		xbrl.append(unit.serialize(maker))
 	
 	#Loop over facts appending to xbrl
-	for fact, value in filing.data_stream:
-		xbrl.append(fact.serialize(value, maker))
+	for (fact, unit), context, value in filing.data_stream:
+		xbrl.append(fact.serialize(value, unit, context, maker))
 
 	return xbrl

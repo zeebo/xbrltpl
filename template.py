@@ -1,6 +1,7 @@
 from datas.fact import BaseFact
 from datas.context import Context
 from datas.unit import Unit
+from collections import defaultdict
 
 class Template(object):
 	"""Template object. Defines structure of facts/units/contexts and
@@ -13,8 +14,7 @@ class Template(object):
 			return
 		
 		self._contexts = []
-		self._facts = []
-		self._tree = {}
+		self._tree = defaultdict(list)
 	
 	def pickle(self):
 		import pickle
@@ -26,63 +26,65 @@ class Template(object):
 	
 	@property
 	def facts(self):
-		return self._facts
+		facts = []
+		for parent, children in self._tree.items():
+			facts.extend(fact for fact, _ in children)
+		return facts
 	
 	@property
 	def units(self):
-		return list(set(unit for fact, unit in self._facts))
+		units = []
+		for parent, children in self._tree.items():
+			units.extend(unit for _, unit in children)
+		return units
 	
-	def walk_facts(self):
-		for child in self._facts:
-			yield (self.find_parent(child), child)
+	@property
+	def rows(self):
+		return zip(self.facts, self.units)
 	
-	def find_parent(self, child):
-		return self._tree[child]
+	@property
+	def tree(self):
+		return self._tree
 	
-	def find_children(self, parent):
-		children = []
-		for child in self._tree:
-			if self.find_parent(child) == parent:
-				children.append(child)
-		return children
+	def walk_tree(self):
+		return [(self.find_parent(item), item) for item in self.rows]
 
-	def add_relationship(self, parent, child):
-		self._tree[child] = parent
-	
-	def del_relationship(self, child):
-		parent = self.find_parent(child)
-		for some_child in self.find_children(child):
-			self.add_relationship(parent, some_child)
-		del self._tree[child]
-	
+	def find_parent(self, child):
+		for parent, children in self._tree.items():
+			if child in children:
+				return parent
+
+	def find_children(self, parent):
+		return self._tree[parent]
+
 	def add_fact(self, fact, unit, parent=None):
 		assert isinstance(fact, BaseFact)
 		assert isinstance(unit, Unit)
-		self._facts.append( (fact, unit) )
-		self.add_relationship(parent, (fact, unit) )
-	
-	def add_context(self, context):
-		assert isinstance(context, Context)
-		self._contexts.append(context)
+		self._tree[parent].append((fact, unit))
 	
 	def insert_fact(self, idx, fact, unit, parent=None):
 		assert isinstance(fact, BaseFact)
 		assert isinstance(unit, Unit)
-		self._facts.insert(idx, (fact, unit))
-		self.add_relationship(parent, (fact, unit) )
+		self._tree[parent].insert(idx, (fact, unit))
+	
+	def del_fact(self, fact, unit):
+		child = fact, unit
+		#Move children to it's parent
+		parent = self.find_parent(child)
+		children = self.find_children(child)
+		self._tree[parent].extend(self.find_children(child))
+		self._tree[parent].remove(child)
+		if parent is not None and child in self._tree:
+			del self._tree[child]
+		
+	#Context related functions
+	def add_context(self, context):
+		assert isinstance(context, Context)
+		self._contexts.append(context)
 	
 	def insert_context(self, idx, context):
 		assert isinstance(context, Context)
 		self._contexts.insert(idx, context)
-	
-	def del_fact(self, index):
-		try:
-			index = self._facts.index(index)
-		except ValueError:
-			pass
-		
-		self.del_relationship(self._facts[index])
-		del self._facts[index]
 	
 	def del_context(self, index):
 		try:
