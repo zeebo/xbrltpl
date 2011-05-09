@@ -1,0 +1,5 @@
+{
+		"cmd": ["${project_path}/bin/nosetests", "--with-coverage", "--cover-erase", "--cover-package=${project_base_name}"],
+			"working_dir": "${project_path}/${project_base_name}"
+}
+
