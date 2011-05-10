@@ -6,6 +6,9 @@ import random
 class MatrixTest(TestCase):
 	def setUp(self):
 		self.m = Matrix()
+
+	def test_two_dimensional(self):
+		self.assertRaises(IndexError, self.m.__getitem__, (1,2,3))
 	
 	def test_default(self):
 		self.assertEqual(self.m[0,0], None)
@@ -32,3 +35,10 @@ class MatrixTest(TestCase):
 		self.assertRaises(IndexError, self.m.__setitem__, (-1, 2), 0)
 		self.assertRaises(IndexError, self.m.__setitem__, (2, -1), 0)
 		self.assertRaises(IndexError, self.m.__setitem__, (-2, 5), 0)
+	
+	def test_delete_index(self):
+		self.m[1,5] = 6
+		self.assertEqual(self.m[1,5], 6)
+		del self.m[1,5]
+		self.assertEqual(self.m[1,5], None)
+	

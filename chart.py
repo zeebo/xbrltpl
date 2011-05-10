@@ -1,5 +1,6 @@
 from template import Template
 from collections import defaultdict
+from lxml_helpers.helpers import xml_namespace
 #Chart object contains the data for a specific chart.
 
 class Chart(object):
@@ -16,6 +17,21 @@ class Chart(object):
 	def pickle(self):
 		import pickle
 		return pickle.dumps(self)
+	
+	@property
+	def role(self):
+		"""Returns a string for the role
+		Example: DocumentAndEntityInformation"""
+		return 'stub'
+	
+	def make_loc(self, maker):
+		"""Uses maker to create a loc element based on the role"""
+		with xml_namespace(maker, None, auto_convert=True) as maker:
+			return maker.loc(**{
+				'xlink:href': 'stub',
+				'xlink:label': 'stub',
+				'xlink:title': 'stub',
+			})
 	
 	@property
 	def data_stream(self):

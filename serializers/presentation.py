@@ -15,6 +15,18 @@ def chart_serializer(chart, filing, maker):
 			'xlink:role': role,
 		})
 
-		parent = maker.loc(**{
-			
-		})
+		parent = chart.make_loc(maker)
+		
+
+
+# Facts should be able to create their own locs
+# presentationArcs are derived from data in the chart
+#<loc 
+#	xlink:type="locator"
+#	xlink:href="http://taxonomies.xbrl.us/us-gaap/2009/non-gaap/dei-2009-01-31.xsd#dei_DocumentPeriodEndDate"
+#	xlink:label="DocumentPeriodEndDate"
+#	xlink:title="DocumentPeriodEndDate"
+#/>
+
+
+# Presentationarcs go from label to label

@@ -36,23 +36,7 @@ class Matrix(object):
 	
 	def __delitem__(self, index):
 		self._check_index(index)
-		#First determine if we're deleting a single index, a row, or a column
-		#deleting a column is worst perfoming.
-		row, col = index
-		if row is None:
-			#Delete a column
-			for row_value in (r for r in self._data if len(r) > col):
-				del row_value[col]
-		elif col is None:
-			#Delete a row
-			try:
-				del self._data[row]
-			except IndexError:
-				pass
-		else:
-			#delete the row and column
-			del self[row, None]
-			del self[None, col]
+		self[index] = self.default
 
 	def _assert_rows(self, row):
 		if len(self._data) <= row:

@@ -23,6 +23,8 @@ class Wrapper(object):
 	def __init__(self, maker):
 		self._maker = maker
 	def __getattr__(self, *args, **kwargs):
+		if isinstance(self._maker, Wrapper):
+			return self._maker.__getattr__(*args, **kwargs)
 		return kwarg_wrapper(self._maker.__getattr__(*args, **kwargs), self._maker)
 
 @contextlib.contextmanager
