@@ -25,7 +25,7 @@ t.add_context(c1)
 t.add_context(c2)
 t.add_context(c3)
 t.add_fact(f1, u1)
-t.add_fact(f2, u2)
+t.add_fact(f2, u2, parent=(f1, u1))
 
 c = Chart(with_template=t)
 c[(f1, u1), c1] = 100
@@ -38,4 +38,4 @@ c[1, c3] = 600
 f = Filing(with_charts=[c], with_company=Company)
 
 s = Serializer(f)
-print s.serialize('Instance', formatter=lxml_to_text)
+print s.serialize('Presentation', formatter=lxml_to_text)

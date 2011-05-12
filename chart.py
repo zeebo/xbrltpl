@@ -43,6 +43,11 @@ class Chart(object):
 				if data is not None:
 					yield (index, context, data)
 	
+	def walk_tree(self):
+		#pass through to underlying template
+		for parent, child in self._template.walk_tree():
+			yield parent, child
+
 	@property
 	def contexts(self):
 		return self._template.contexts

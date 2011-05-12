@@ -6,19 +6,9 @@ from collections import defaultdict
 class Template(object):
 	"""Template object. Defines structure of facts/units/contexts and
 		serializes data into xml format"""
-	def __init__(self, data = None):
-		if data is not None:
-			import pickle
-			new_template = pickle.loads(data)
-			self.__dict__.update(new_template.__dict__)
-			return
-		
+	def __init__(self):
 		self._contexts = []
 		self._tree = defaultdict(list)
-	
-	def pickle(self):
-		import pickle
-		return pickle.dumps(self)
 	
 	@property
 	def contexts(self):
@@ -53,14 +43,14 @@ class Template(object):
 		for child in self._tree[root]:
 			yield child
 			if child in self._tree:
-				for i in ordered_yield(root=child):
+				for i in self.ordered_yield(root=child):
 					yield i
 	
 	def ordered_tree(self):
 		return list(self.ordered_yield())
 	
 	def get_index(self, child):
-		return list(self.ordered_yield).index(child)
+		return list(self.ordered_yield()).index(child)
 	
 	def find_parent(self, child):
 		for parent, children in self._tree.items():

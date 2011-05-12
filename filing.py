@@ -25,11 +25,6 @@ class Filing(object):
 				pass
 			self.company = Company
 	
-	def pickle(self):
-		import pickle
-		return pickle.dumps(self)
-	
-
 	#Convenience methods for getting all the data out of the charts
 	@property
 	def contexts(self):

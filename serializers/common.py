@@ -51,7 +51,13 @@ def gen_nsmap(filing, document):
 			'ci-sfp-cls': "http://xbrl.us/stm/ci/sfp-cls/2009-01-31",
 			'us-types': "http://xbrl.us/us-types/2009-01-31",
 			'xbrli': "http://www.xbrl.org/2003/instance",
-		}
+		},
+		'Presentation':{
+			'xmlns': "http://www.xbrl.org/2003/linkbase",
+			'xsi': "http://www.w3.org/2001/XMLSchema-instance",
+			'xbrli': "http://www.xbrl.org/2003/instance",
+			'xlink': "http://www.w3.org/1999/xlink",
+		},
 	}[document]
 	nsmap[filing.company.ticker] = filing_url(filing)
 	return nsmap
