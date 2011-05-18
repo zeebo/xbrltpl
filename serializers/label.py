@@ -10,9 +10,7 @@ def label_serializer(serializer):
 	nsmap = gen_nsmap(filing, 'Label')
 	maker = ElementMaker(nsmap=nsmap)
 
-	print maker._nsmap
 	with xml_namespace(maker, 'link', auto_convert=True) as maker:
-		print maker._nsmap
 		linkbase = maker.linkbase(**{
 			#find out about this
 			'xsi:schemaLocation': 'http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'
@@ -23,7 +21,6 @@ def label_serializer(serializer):
 		})
 		
 		for (fact, unit), context, data in filing.data_stream:
-			print maker._nsmap
 			labellink.append(make_loc(fact, maker, namespace='link'))
 			labellink.append(make_label(fact, maker, namespace='link'))
 			labellink.append(make_labelArc(fact, maker, namespace='link'))

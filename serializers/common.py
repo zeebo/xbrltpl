@@ -85,7 +85,7 @@ def make_label(fact, maker, namespace=None):
 			'xlink:type': 'resource',
 			'xlink:label': 'label_{0}'.format(fact.label),
 			'xlink:role': 'http://www.xbrl.org/2003/role/label',
-			'xlink:title': 'label_{0}'.format(fact.label),
+			'xlink:title': 'label_{0}'.format(fact.title),
 			'xml:lang': 'en',
 			'id': 'label_{0}'.format(fact.label),
 		})
@@ -109,7 +109,7 @@ def make_labelArc(fact, maker, namespace=None):
 		return maker.labelArc(**{
 			'xlink:type': 'arc',
 			'xlink:arcrole': 'http://www.xbrl.org/2003/arcrole/concept-label',
-			'xlink:from': 'label_{0}'.format(fact.label),
-			'xlink:to': fact.label,
+			'xlink:from': fact.label,
+			'xlink:to': 'label_{0}'.format(fact.label),
 			'xlink:title': 'label: {0} to label_{0}'.format(fact.label)
 		})
