@@ -81,7 +81,7 @@ class Serializer(object):
 
 		arguments:
 			name		type	description
-			-------------------------------
+			----        ----    -----------
 			document:	string	Name of document to be serialized (returned by determine_files)
 			formatter:	(func)	Formatter. Should take lxml nodes as input, and return whatever. If you want lxml nodes, use (lambda x: x)
 		"""

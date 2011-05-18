@@ -38,4 +38,4 @@ c[1, c3] = 600
 f = Filing(with_charts=[c], with_company=Company)
 
 s = Serializer(f)
-print s.serialize('Presentation', formatter=lxml_to_text)
+print s.serialize('Label', formatter=lxml_to_text)

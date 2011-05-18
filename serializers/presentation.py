@@ -1,6 +1,6 @@
 from lxml.builder import ElementMaker
 from lxml_helpers.helpers import xml_namespace
-from common import gen_nsmap, convert_role_url
+from common import gen_nsmap, convert_role_url, make_loc, make_presentationArc
 import datetime
 
 def presentation_serializer(serializer):
@@ -13,7 +13,8 @@ def presentation_serializer(serializer):
 	with xml_namespace(maker, None, auto_convert=True) as maker:
 		linkbase = maker.linkbase(**{
 			#find out about this
-			'xsi:schemaLocation': 'http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd'
+			'xsi:schemaLocation': 'http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd',
+			'xmlns': 'http://www.xbrl.org/2003/linkbase',
 		})
 		for chart in filing.charts:
 			roleRef = maker.roleRef(**{
@@ -38,19 +39,17 @@ def chart_serializer(chart, filing, maker):
 			'xlink:role': role,
 		})
 
-		link.append(chart.make_loc(maker))
-
-		class ParentObject(object):
-			label = 'stub'
+		parent_fact = chart.make_loc_fact()
+		link.append(make_loc(parent_fact, maker))
 
 		for order, (n_parent, n_child) in enumerate(chart.walk_tree()):
 			if n_parent is None:
-				n_parent = (ParentObject, None)
+				n_parent = (parent_fact, None)
 			
 			n_child, n_parent = n_child[0], n_parent[0]
 
-			link.append(n_child.make_loc(maker))
-			link.append(n_child.make_presentation(n_parent, order, maker))
+			link.append(make_loc(n_child, maker))
+			link.append(make_presentationArc(n_child, n_parent, order, maker))
 	
 	return link
 

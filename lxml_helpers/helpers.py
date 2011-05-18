@@ -22,10 +22,15 @@ def kwarg_wrapper(func, maker):
 class Wrapper(object):
 	def __init__(self, maker):
 		self._maker = maker
-	def __getattr__(self, *args, **kwargs):
+	def __getattr__(self, name):
+		if name == '_nsmap':
+			return self._maker._nsmap
+		if name == '_namespace':
+			return self._maker._namespace
+		
 		if isinstance(self._maker, Wrapper):
-			return self._maker.__getattr__(*args, **kwargs)
-		return kwarg_wrapper(self._maker.__getattr__(*args, **kwargs), self._maker)
+			return self._maker.__getattr__(name)
+		return kwarg_wrapper(self._maker.__getattr__(name), self._maker)
 
 @contextlib.contextmanager
 def auto_convert(maker):

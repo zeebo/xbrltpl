@@ -1,5 +1,6 @@
 from template import Template
 from collections import defaultdict
+from datas.fact import Fact
 from lxml_helpers.helpers import xml_namespace
 #Chart object contains the data for a specific chart.
 
@@ -24,14 +25,13 @@ class Chart(object):
 		Example: DocumentAndEntityInformation"""
 		return 'stub'
 	
-	def make_loc(self, maker):
-		"""Uses maker to create a loc element based on the role"""
-		with xml_namespace(maker, None, auto_convert=True) as maker:
-			return maker.loc(**{
-				'xlink:href': 'stub',
-				'xlink:label': 'stub',
-				'xlink:title': 'stub',
-			})
+	def make_loc_fact(self):
+		"""Return a Fact object that represents the base of this chart"""
+		return Fact(**{
+			'label': 'label',
+			'href': 'href',
+			'title': 'title',
+		})
 	
 	@property
 	def data_stream(self):

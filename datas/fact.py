@@ -2,43 +2,46 @@ import lxml
 from lxml_helpers.helpers import xml_namespace
 import random
 
-class BaseFact(object):
+def cached_property(function):
 	@property
-	def label(self):
-		if (hasattr(self, 'cache')):
-			return self.cache
-		self.cache = "{0:x}".format(random.getrandbits(60))
-		return self.cache
+	def new_func(self):
+		try:
+			return self._cache[function.func_name]
+		except:
+			if (not hasattr(self, '_cache')):
+				self._cache = {}
+			
+			self._cache[function.func_name] = function(self)
+			return self._cache[function.func_name]
+	return new_func
 
+class BaseFact(object):
+	def __init__(self, **kwargs):
+		self._cache = {}
+		self._cache.update(kwargs)
+
+	@cached_property
+	def label(self):
+		return "{0:x}".format(random.getrandbits(60))
+	
+	@cached_property
+	def label_text(self):
+		return "{0:x}".format(random.getrandbits(60))
+	
+	@cached_property
+	def href(self):
+		return "{0:x}".format(random.getrandbits(60))
+	
+	@cached_property
+	def title(self):
+		return "{0:x}".format(random.getrandbits(60))
+		
 	def serialize(self, value, unit, context, maker):
 		return maker.fact('{0}'.format(value), **{
 			'contextRef': context.make_id(),
 			'unitRef': unit.id,
 		})
 	
-	def make_loc(self, maker):
-		with xml_namespace(maker, None, auto_convert=True) as maker:
-			return maker.loc(**{
-				'xlink:type': 'locator',
-				'xlink:href': 'STUB',
-				'xlink:label': self.label,
-				'xlink:title': 'STUB TITLE',
-			})
-	
-	def make_presentation(self, parent, order, maker):
-		with xml_namespace(maker, None, auto_convert=True) as maker:
-			return maker.presentationArc(**{
-				'xlink:type': 'arc',
-				'xlink:arcrole': 'STUB ARCROLE',
-				'xlink:from': parent.label,
-				'xlink:to': self.label,
-				'xlink:title': 'presentation: {0} to {1}'.format(
-						parent.label, self.label
-					),
-				'use': 'optional',
-				'order': '{0:.1f}'.format(order)
-			})
-
 class Fact(BaseFact):
 	"""Defines a fact row for the template"""
 	pass
