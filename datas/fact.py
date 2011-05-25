@@ -15,6 +15,9 @@ def cached_property(function):
 			return self._cache[function.func_name]
 	return new_func
 
+def randbits(bits=60):
+	return "{0:x}".format(random.getrandbits(bits))
+
 class BaseFact(object):
 	def __init__(self, **kwargs):
 		self._cache = {}
@@ -22,19 +25,19 @@ class BaseFact(object):
 
 	@cached_property
 	def label(self):
-		return "{0:x}".format(random.getrandbits(60))
+		return randbits()
 	
 	@cached_property
 	def label_text(self):
-		return "{0:x}".format(random.getrandbits(60))
+		return randbits()
 	
 	@cached_property
 	def href(self):
-		return "{0:x}".format(random.getrandbits(60))
+		return randbits()
 	
 	@cached_property
 	def title(self):
-		return "{0:x}".format(random.getrandbits(60))
+		return randbits()
 		
 	def serialize(self, value, unit, context, maker):
 		return maker.fact('{0}'.format(value), **{
