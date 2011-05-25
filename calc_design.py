@@ -11,8 +11,15 @@ def class_gen(op, repr):
 		def __call__(self, a, b): return op(a, b)
 	return NewClass()
 
+class NegClass(object):
+	def __repr__(self): return '!'
+	def __call__(self, a): return -a
+
 add = class_gen(operator.add, '+')
 mul = class_gen(operator.mul, '*')
+sub = class_gen(operator.sub, '-')
+div = class_gen(operator.div, '/')
+neg = NegClass()
 
 def guarded(function):
 	@wraps(function)
@@ -44,6 +51,17 @@ class Calc(object):
 	def __mul__(self, other):
 		return Calc(op=mul, first=self, second=other)
 	
+	@guarded
+	def __sub__(self, other):
+		return Calc(op=sub, first=self, second=other)
+	
+	@guarded
+	def __div__(self, other):
+		return Calc(op=div, first=self, second=other)
+	
+	def __neg__(self):
+		return Calc(name='-{0}'.format(self.name), op=neg, first=self, second=None)
+	
 	def tree_gen(self, seen=None):
 		if seen is None:
 			seen = {None: True}
@@ -71,10 +89,7 @@ def fancy_op(a, b,):
 	op = random.choice([mul, add])
 	return op(a, b)
 
-for thing in (b+b*b*b*b).tree:
-	print thing
-print '-'
-for thing in reduce(fancy_op, [e]*10).tree:
+for thing in (-b + b / c).tree:
 	print thing
 
 #things: add negation
