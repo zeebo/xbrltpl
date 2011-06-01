@@ -59,13 +59,18 @@ def gen_nsmap(filing, document):
 			'xbrli': 'http://www.xbrl.org/2003/instance',
 			'xlink': 'http://www.w3.org/1999/xlink',
 		},
+		'Calculation':{
+			'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+			'xbrli': 'http://www.xbrl.org/2003/instance',
+			'xlink': 'http://www.w3.org/1999/xlink',
+		},
 		'Label':{
 			'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
 			'link': 'http://www.xbrl.org/2003/linkbase',
 			'xbrli': 'http://www.xbrl.org/2003/instance',
 			'xlink': 'http://www.w3.org/1999/xlink',
 			'xml': 'http://www.w3.org/XML/1998/namespace',
-		}
+		},
 	}[document]
 	nsmap[filing.company.ticker] = filing_url(filing)
 	return nsmap
@@ -79,37 +84,3 @@ def make_loc(fact, maker, namespace=None):
 			'xlink:title': fact.title,
 		})
 
-def make_label(fact, maker, namespace=None):
-	with xml_namespace(maker, namespace, auto_convert=True) as maker:
-		return maker.label(fact.label_text, **{
-			'xlink:type': 'resource',
-			'xlink:label': 'label_{0}'.format(fact.label),
-			'xlink:role': 'http://www.xbrl.org/2003/role/label',
-			'xlink:title': 'label_{0}'.format(fact.title),
-			'xml:lang': 'en',
-			'id': 'label_{0}'.format(fact.label),
-		})
-
-def make_presentationArc(child, parent, order, maker, namespace=None):
-	with xml_namespace(maker, namespace, auto_convert=True) as maker:
-		return maker.presentationArc(**{
-			'xlink:type': 'arc',
-			'xlink:arcrole': 'http://www.xbrl.org/2003/arcrole/parent-child',
-			'xlink:from': parent.label,
-			'xlink:to': child.label,
-			'xlink:title': 'presentation: {0} to {1}'.format(
-					parent.label, child.label
-				),
-			'use': 'optional',
-			'order': '{0:.1f}'.format(order)
-		})
-
-def make_labelArc(fact, maker, namespace=None):
-	with xml_namespace(maker, namespace, auto_convert=True) as maker:
-		return maker.labelArc(**{
-			'xlink:type': 'arc',
-			'xlink:arcrole': 'http://www.xbrl.org/2003/arcrole/concept-label',
-			'xlink:from': fact.label,
-			'xlink:to': 'label_{0}'.format(fact.label),
-			'xlink:title': 'label: {0} to label_{0}'.format(fact.label)
-		})

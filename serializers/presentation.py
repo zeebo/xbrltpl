@@ -1,7 +1,21 @@
 from lxml.builder import ElementMaker
 from lxml_helpers.helpers import xml_namespace
-from common import gen_nsmap, convert_role_url, make_loc, make_presentationArc
+from common import gen_nsmap, convert_role_url, make_loc
 import datetime
+
+def make_presentationArc(child, parent, order, maker, namespace=None):
+	with xml_namespace(maker, namespace, auto_convert=True) as maker:
+		return maker.presentationArc(**{
+			'xlink:type': 'arc',
+			'xlink:arcrole': 'http://www.xbrl.org/2003/arcrole/parent-child',
+			'xlink:from': parent.label,
+			'xlink:to': child.label,
+			'xlink:title': 'presentation: {0} to {1}'.format(
+					parent.label, child.label
+				),
+			'use': 'optional',
+			'order': '{0:.1f}'.format(order)
+		})
 
 def presentation_serializer(serializer):
 	filing = serializer.filing
