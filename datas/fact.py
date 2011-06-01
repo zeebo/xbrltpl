@@ -25,6 +25,10 @@ class Fact(object):
 		return 'Fact[{0}]'.format(self.id)
 	
 	@cached_property
+	def namespace(self):
+		return 'us-gaap'
+
+	@cached_property
 	def id(self):
 		return uid()
 
@@ -45,10 +49,14 @@ class Fact(object):
 		return uid()
 		
 	def serialize(self, value, unit, context, maker):
-		return maker.fact('{0}'.format(value), **{
-			'contextRef': context.make_id(),
-			'unitRef': unit.id,
-		})
+		with xml_namespace(maker, self.namespace) as maker:
+			return maker.__getattr__(self.label)(
+				'{0}'.format(value),
+				**{
+					'contextRef': context.make_id(),
+					'unitRef': unit.id,
+				}
+			)
 	
 	@property
 	def is_calc(self):
