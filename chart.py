@@ -55,6 +55,14 @@ class Chart(object):
 		return self._template.facts
 	
 	@property
+	def calculation_facts(self):
+		return [fact for fact in self._template.facts if fact.is_calc]
+	
+	@property
+	def has_calculation_facts(self):
+		return len(self.calculation_facts) > 0
+	
+	@property
 	def units(self):
 		return self._template.units
 	

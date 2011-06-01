@@ -53,9 +53,5 @@ class Fact(object):
 	@property
 	def is_calc(self):
 		return self.calc_items is not None
-	
-	@property
-	def calc(self):
-		return self.calc_items
 
 
