@@ -1,4 +1,4 @@
-from datas.fact import BaseFact
+from datas.fact import Fact
 from datas.context import Context
 from datas.unit import Unit
 from collections import defaultdict
@@ -61,12 +61,12 @@ class Template(object):
 		return self._tree[parent]
 	
 	def add_fact(self, fact, unit, parent=None):
-		assert isinstance(fact, BaseFact)
+		assert isinstance(fact, Fact)
 		assert isinstance(unit, Unit)
 		self._tree[parent].append((fact, unit))
 	
 	def insert_fact(self, idx, fact, unit, parent=None):
-		assert isinstance(fact, BaseFact)
+		assert isinstance(fact, Fact)
 		assert isinstance(unit, Unit)
 		self._tree[parent].insert(idx, (fact, unit))
 	

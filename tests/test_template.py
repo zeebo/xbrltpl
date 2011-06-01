@@ -1,6 +1,6 @@
 from base import TestCase
 from template import Template
-from datas.fact import BaseFact
+from datas.fact import Fact
 from datas.context import Context
 from datas.unit import Unit
 from mock import Mock
@@ -29,13 +29,13 @@ class TemplateTest(TestCase):
 	def get_some_facts(self, cache={}):
 		if len(cache):
 			return (item for _, item in sorted(cache.items()))
-		cache['a'] = m('facta', BaseFact), m('unita', Unit)
-		cache['b'] = m('factb', BaseFact), m('unitb', Unit)
-		cache['c'] = m('factc', BaseFact), m('unitc', Unit)
-		cache['d'] = m('factd', BaseFact), m('unitd', Unit)
-		cache['e'] = m('facte', BaseFact), m('unite', Unit)
-		cache['f'] = m('factf', BaseFact), m('unitf', Unit)
-		cache['g'] = m('factg', BaseFact), m('unitg', Unit)
+		cache['a'] = m('facta', Fact), m('unita', Unit)
+		cache['b'] = m('factb', Fact), m('unitb', Unit)
+		cache['c'] = m('factc', Fact), m('unitc', Unit)
+		cache['d'] = m('factd', Fact), m('unitd', Unit)
+		cache['e'] = m('facte', Fact), m('unite', Unit)
+		cache['f'] = m('factf', Fact), m('unitf', Unit)
+		cache['g'] = m('factg', Fact), m('unitg', Unit)
 		return self.get_some_facts()
 
 
@@ -56,7 +56,7 @@ class TemplateTest(TestCase):
 		self.assertEqual(self.t.contexts, [context])
 	
 	def test_fact_methods(self):
-		fact, unit = m('fact', BaseFact), m('unit', Unit)
+		fact, unit = m('fact', Fact), m('unit', Unit)
 		self.assertEqual(self.t.facts, [])
 		self.assertEqual(self.t.units, [])
 		self.t.add_fact(fact, unit)
@@ -67,8 +67,8 @@ class TemplateTest(TestCase):
 		self.assertEqual(self.t.units, [])
 
 	def test_find_parent(self):
-		a = m('facta', BaseFact), m('unita', Unit)
-		b = m('factb', BaseFact), m('unitb', Unit)
+		a = m('facta', Fact), m('unita', Unit)
+		b = m('factb', Fact), m('unitb', Unit)
 
 		self.t.add_fact(*a)
 		self.t.add_fact(*b, parent=a)
@@ -106,6 +106,6 @@ class TemplateTest(TestCase):
 	
 	def test_insert_fact(self):
 		a,b,c,d,e,f,g = self.get_some_facts()
-		h = m('facth', BaseFact), m('unith', Unit)
+		h = m('facth', Fact), m('unith', Unit)
 		self.tree.insert_fact(1, *h)
 		self.assertEqual(list(self.tree.ordered_yield()), [a,b,c,e,f,d,h,g])

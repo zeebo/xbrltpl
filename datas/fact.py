@@ -1,6 +1,6 @@
 import lxml
 from lxml_helpers.helpers import xml_namespace
-import random
+from helpers import uid
 
 def cached_property(function):
 	@property
@@ -15,29 +15,34 @@ def cached_property(function):
 			return self._cache[function.func_name]
 	return new_func
 
-def randbits(bits=60):
-	return "{0:x}".format(random.getrandbits(bits))
-
-class BaseFact(object):
-	def __init__(self, **kwargs):
+class Fact(object):
+	def __init__(self, with_calc=None, **kwargs):
 		self._cache = {}
 		self._cache.update(kwargs)
+		self.calc_items = with_calc
+	
+	def __repr__(self):
+		return 'Fact[{0}]'.format(self.id)
+	
+	@cached_property
+	def id(self):
+		return uid()
 
 	@cached_property
 	def label(self):
-		return randbits()
+		return uid()
 	
 	@cached_property
 	def label_text(self):
-		return randbits()
+		return uid()
 	
 	@cached_property
 	def href(self):
-		return randbits()
+		return uid()
 	
 	@cached_property
 	def title(self):
-		return randbits()
+		return uid()
 		
 	def serialize(self, value, unit, context, maker):
 		return maker.fact('{0}'.format(value), **{
@@ -45,12 +50,12 @@ class BaseFact(object):
 			'unitRef': unit.id,
 		})
 	
-class Fact(BaseFact):
-	"""Defines a fact row for the template"""
-	pass
-
-class CalculationFact(BaseFact):
-	"""Defines a calculation fact which is derived data from other facts"""
-	pass
+	@property
+	def is_calc(self):
+		return self.calc_items is not None
+	
+	@property
+	def calc(self):
+		return self.calc_items
 
 
