@@ -6,9 +6,13 @@ from collections import defaultdict
 class Template(object):
 	"""Template object. Defines structure of facts/units/contexts and
 		serializes data into xml format"""
-	def __init__(self):
+	def __init__(self, role='DocumentRole'):
+		"""Initializer for a template object. Takes a role
+		Role example: DocumentAndEntityInformation"""
 		self._contexts = []
 		self._tree = defaultdict(list)
+
+		self.role = role
 	
 	@property
 	def contexts(self):

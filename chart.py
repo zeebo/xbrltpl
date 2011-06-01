@@ -21,9 +21,7 @@ class Chart(object):
 	
 	@property
 	def role(self):
-		"""Returns a string for the role
-		Example: DocumentAndEntityInformation"""
-		return 'stub'
+		return self._template.role
 	
 	def make_loc_fact(self):
 		"""Return a Fact object that represents the base of this chart"""
