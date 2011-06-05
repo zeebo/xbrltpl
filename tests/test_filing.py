@@ -1,5 +1,5 @@
 from base import TestCase
-from filing import Filing
+from container.filing import Filing
 
 class FilingTest(TestCase):
 	def test_default_date(self):

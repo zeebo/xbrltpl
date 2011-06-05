@@ -82,6 +82,8 @@ class TemplateTest(TestCase):
 		self.assertEqual({None:[a,g], a:[b,c,d], c:[e,f]}, self.tree.tree)
 		self.tree.del_fact(*c)
 		self.assertEqual({None:[a,g], a:[b,d,e,f]}, self.tree.tree)
+		self.tree.set_parent(*e, parent=None, idx=1)
+		self.assertEqual({None:[a,e,g], a:[b,d,f]}, self.tree.tree)
 	
 	def test_walk_tree(self):
 		# Bunch of fact/unit combos

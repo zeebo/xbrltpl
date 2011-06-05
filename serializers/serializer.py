@@ -1,4 +1,4 @@
-from filing import Filing
+from container.filing import Filing
 from calculation import calculation_serializer
 from definition import definition_serializer
 from instance import instance_serializer
