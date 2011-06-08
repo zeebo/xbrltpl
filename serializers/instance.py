@@ -31,7 +31,7 @@ def instance_serializer(serializer):
 		xbrl.append(context.serialize(maker, company.cik))
 	
 	#Loop over units, appending to xbrl
-	for unit in filing.units:
+	for unit in set(filing.units):
 		xbrl.append(unit.serialize(maker))
 	
 	#Loop over facts appending to xbrl

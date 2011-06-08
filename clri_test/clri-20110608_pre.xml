@@ -1,0 +1,142 @@
+<linkbase xmlns:clri="http://cleartronic.com/2011-06-08" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd" xmlns="http://www.xbrl.org/2003/linkbase">
+  <roleRef xlink:href="clri-20110608.xsd#DocumentRole" roleURI="http://cleartronic.com/2011-06-08/role/DocumentRole" xlink:type="simple"/>
+  <presentationLink xlink:type="extended" xlink:role="http://cleartronic.com/2011-06-08/role/DocumentRole">
+    <loc xlink:href="href" xlink:label="label" xlink:type="locator" xlink:title="title"/>
+    <loc xlink:href="8C9FE4D0FE" xlink:label="CurrentAssets" xlink:type="locator" xlink:title="0555A7BA9D"/>
+    <presentationArc use="optional" xlink:title="presentation: label to CurrentAssets" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="CurrentAssets" xlink:type="arc" order="0.0"/>
+    <loc xlink:href="4AA5481972" xlink:label="Cash" xlink:type="locator" xlink:title="508943A8EE"/>
+    <presentationArc use="optional" xlink:title="presentation: label to Cash" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="Cash" xlink:type="arc" order="1.0"/>
+    <loc xlink:href="68ED08FD12" xlink:label="AccountsReceivableNet" xlink:type="locator" xlink:title="AF29D9FA94"/>
+    <presentationArc use="optional" xlink:title="presentation: label to AccountsReceivableNet" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="AccountsReceivableNet" xlink:type="arc" order="2.0"/>
+    <loc xlink:href="F3852FDBF5" xlink:label="Inventory" xlink:type="locator" xlink:title="C02CE9AF68"/>
+    <presentationArc use="optional" xlink:title="presentation: label to Inventory" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="Inventory" xlink:type="arc" order="3.0"/>
+    <loc xlink:href="AA9846669D" xlink:label="PrepaidExpensesAndOtherCurrentAssets" xlink:type="locator" xlink:title="61821B1599"/>
+    <presentationArc use="optional" xlink:title="presentation: label to PrepaidExpensesAndOtherCurrentAssets" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="PrepaidExpensesAndOtherCurrentAssets" xlink:type="arc" order="4.0"/>
+    <loc xlink:href="1BBE464F06" xlink:label="TotalCurrentAssets" xlink:type="locator" xlink:title="BE153200D3"/>
+    <presentationArc use="optional" xlink:title="presentation: label to TotalCurrentAssets" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="TotalCurrentAssets" xlink:type="arc" order="5.0"/>
+    <loc xlink:href="3764583BAF" xlink:label="PropertyAndEquipmentNet" xlink:type="locator" xlink:title="66856D1CBD"/>
+    <presentationArc use="optional" xlink:title="presentation: label to PropertyAndEquipmentNet" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="PropertyAndEquipmentNet" xlink:type="arc" order="6.0"/>
+    <loc xlink:href="32E1E8A81D" xlink:label="TotalAssets" xlink:type="locator" xlink:title="6CDC4621F3"/>
+    <presentationArc use="optional" xlink:title="presentation: label to TotalAssets" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="TotalAssets" xlink:type="arc" order="7.0"/>
+    <loc xlink:href="DD997D01B2" xlink:label="CurrentLiabilities" xlink:type="locator" xlink:title="4483A27B08"/>
+    <presentationArc use="optional" xlink:title="presentation: label to CurrentLiabilities" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="CurrentLiabilities" xlink:type="arc" order="8.0"/>
+    <loc xlink:href="6B704D9E06" xlink:label="AccountsPayable" xlink:type="locator" xlink:title="718A8BD5E2"/>
+    <presentationArc use="optional" xlink:title="presentation: label to AccountsPayable" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="AccountsPayable" xlink:type="arc" order="9.0"/>
+    <loc xlink:href="1137CBCC9F" xlink:label="AccruedExpenses" xlink:type="locator" xlink:title="3B05BCBF5B"/>
+    <presentationArc use="optional" xlink:title="presentation: label to AccruedExpenses" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="AccruedExpenses" xlink:type="arc" order="10.0"/>
+    <loc xlink:href="660D890C77" xlink:label="DeferredRevenueCurrentPortion" xlink:type="locator" xlink:title="2011F69AF7"/>
+    <presentationArc use="optional" xlink:title="presentation: label to DeferredRevenueCurrentPortion" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="DeferredRevenueCurrentPortion" xlink:type="arc" order="11.0"/>
+    <loc xlink:href="1CD4901002" xlink:label="NotesPayableStockholders" xlink:type="locator" xlink:title="04EFD4BF14"/>
+    <presentationArc use="optional" xlink:title="presentation: label to NotesPayableStockholders" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="NotesPayableStockholders" xlink:type="arc" order="12.0"/>
+    <loc xlink:href="BD3269AA24" xlink:label="TotalCurrentLiabilities" xlink:type="locator" xlink:title="E35565DE22"/>
+    <presentationArc use="optional" xlink:title="presentation: label to TotalCurrentLiabilities" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="TotalCurrentLiabilities" xlink:type="arc" order="13.0"/>
+    <loc xlink:href="0F32DA260B" xlink:label="LongTermLiabilities" xlink:type="locator" xlink:title="66475EFEF9"/>
+    <presentationArc use="optional" xlink:title="presentation: label to LongTermLiabilities" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="LongTermLiabilities" xlink:type="arc" order="14.0"/>
+    <loc xlink:href="8A4913B9DF" xlink:label="NotesPayableStockholders" xlink:type="locator" xlink:title="C3953A84AF"/>
+    <presentationArc use="optional" xlink:title="presentation: label to NotesPayableStockholders" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="NotesPayableStockholders" xlink:type="arc" order="15.0"/>
+    <loc xlink:href="6FA5F63FFE" xlink:label="DeferredRevenueNetOfCurrentPortion" xlink:type="locator" xlink:title="07918CE642"/>
+    <presentationArc use="optional" xlink:title="presentation: label to DeferredRevenueNetOfCurrentPortion" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="DeferredRevenueNetOfCurrentPortion" xlink:type="arc" order="16.0"/>
+    <loc xlink:href="49B962519E" xlink:label="TotalLongTermLiabilities" xlink:type="locator" xlink:title="8DECAFE4DB"/>
+    <presentationArc use="optional" xlink:title="presentation: label to TotalLongTermLiabilities" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="TotalLongTermLiabilities" xlink:type="arc" order="17.0"/>
+    <loc xlink:href="2A8AA97CA2" xlink:label="TotalLiabilities" xlink:type="locator" xlink:title="F427E61E1F"/>
+    <presentationArc use="optional" xlink:title="presentation: label to TotalLiabilities" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="TotalLiabilities" xlink:type="arc" order="18.0"/>
+    <loc xlink:href="ABB719BE03" xlink:label="StockholdersEquityDeficit" xlink:type="locator" xlink:title="8C7EDA7C99"/>
+    <presentationArc use="optional" xlink:title="presentation: label to StockholdersEquityDeficit" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="StockholdersEquityDeficit" xlink:type="arc" order="19.0"/>
+    <loc xlink:href="719C30559B" xlink:label="PreferredStock" xlink:type="locator" xlink:title="AD80EF69A4"/>
+    <presentationArc use="optional" xlink:title="presentation: label to PreferredStock" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="PreferredStock" xlink:type="arc" order="20.0"/>
+    <loc xlink:href="E6C40ED303" xlink:label="CommonStocky" xlink:type="locator" xlink:title="AA5E05798C"/>
+    <presentationArc use="optional" xlink:title="presentation: label to CommonStocky" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="CommonStocky" xlink:type="arc" order="21.0"/>
+    <loc xlink:href="3FC61B4123" xlink:label="AdditionalPaidinCapital" xlink:type="locator" xlink:title="40A020478D"/>
+    <presentationArc use="optional" xlink:title="presentation: label to AdditionalPaidinCapital" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="AdditionalPaidinCapital" xlink:type="arc" order="22.0"/>
+    <loc xlink:href="64802E5BAF" xlink:label="AccumulatedDeficit" xlink:type="locator" xlink:title="77D8683043"/>
+    <presentationArc use="optional" xlink:title="presentation: label to AccumulatedDeficit" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="AccumulatedDeficit" xlink:type="arc" order="23.0"/>
+    <loc xlink:href="92C8CB8ACF" xlink:label="TotalStockholdersEquityDeficit" xlink:type="locator" xlink:title="E7F758D54D"/>
+    <presentationArc use="optional" xlink:title="presentation: label to TotalStockholdersEquityDeficit" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="TotalStockholdersEquityDeficit" xlink:type="arc" order="24.0"/>
+    <loc xlink:href="941F7CC94A" xlink:label="TotalLiabilitiesAndStockholdersEquityDeficit" xlink:type="locator" xlink:title="E3D97523AA"/>
+    <presentationArc use="optional" xlink:title="presentation: label to TotalLiabilitiesAndStockholdersEquityDeficit" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="TotalLiabilitiesAndStockholdersEquityDeficit" xlink:type="arc" order="25.0"/>
+  </presentationLink>
+  <roleRef xlink:href="clri-20110608.xsd#DocumentRole" roleURI="http://cleartronic.com/2011-06-08/role/DocumentRole" xlink:type="simple"/>
+  <presentationLink xlink:type="extended" xlink:role="http://cleartronic.com/2011-06-08/role/DocumentRole">
+    <loc xlink:href="href" xlink:label="label" xlink:type="locator" xlink:title="title"/>
+    <loc xlink:href="2DA85FA0E5" xlink:label="Revenue" xlink:type="locator" xlink:title="BB6913A237"/>
+    <presentationArc use="optional" xlink:title="presentation: label to Revenue" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="Revenue" xlink:type="arc" order="0.0"/>
+    <loc xlink:href="1161F73C61" xlink:label="CostOfRevenue" xlink:type="locator" xlink:title="406158FBC4"/>
+    <presentationArc use="optional" xlink:title="presentation: label to CostOfRevenue" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="CostOfRevenue" xlink:type="arc" order="1.0"/>
+    <loc xlink:href="8F6E3BB076" xlink:label="GrossProfit" xlink:type="locator" xlink:title="A5B2AD3FAE"/>
+    <presentationArc use="optional" xlink:title="presentation: label to GrossProfit" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="GrossProfit" xlink:type="arc" order="2.0"/>
+    <loc xlink:href="47D82BFD15" xlink:label="OperatingExpenses" xlink:type="locator" xlink:title="DE0E3E5334"/>
+    <presentationArc use="optional" xlink:title="presentation: label to OperatingExpenses" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="OperatingExpenses" xlink:type="arc" order="3.0"/>
+    <loc xlink:href="4BAC52BAC6" xlink:label="SellingExpenses" xlink:type="locator" xlink:title="ED8AB66FE9"/>
+    <presentationArc use="optional" xlink:title="presentation: label to SellingExpenses" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="SellingExpenses" xlink:type="arc" order="4.0"/>
+    <loc xlink:href="65A16E7D2F" xlink:label="AdministrativeExpenses" xlink:type="locator" xlink:title="BD1DE84342"/>
+    <presentationArc use="optional" xlink:title="presentation: label to AdministrativeExpenses" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="AdministrativeExpenses" xlink:type="arc" order="5.0"/>
+    <loc xlink:href="8049F0C761" xlink:label="ResearchAndDevelopment" xlink:type="locator" xlink:title="3E213508B2"/>
+    <presentationArc use="optional" xlink:title="presentation: label to ResearchAndDevelopment" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="ResearchAndDevelopment" xlink:type="arc" order="6.0"/>
+    <loc xlink:href="D324C7BA64" xlink:label="Depreciation" xlink:type="locator" xlink:title="76D30B42AE"/>
+    <presentationArc use="optional" xlink:title="presentation: label to Depreciation" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="Depreciation" xlink:type="arc" order="7.0"/>
+    <loc xlink:href="E6EF462262" xlink:label="TotalOperatingExpenses" xlink:type="locator" xlink:title="46796B2A22"/>
+    <presentationArc use="optional" xlink:title="presentation: label to TotalOperatingExpenses" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="TotalOperatingExpenses" xlink:type="arc" order="8.0"/>
+    <loc xlink:href="59F662B2E8" xlink:label="OtherExpenses" xlink:type="locator" xlink:title="E0C7592137"/>
+    <presentationArc use="optional" xlink:title="presentation: label to OtherExpenses" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="OtherExpenses" xlink:type="arc" order="9.0"/>
+    <loc xlink:href="E3155EBA04" xlink:label="NetLoss" xlink:type="locator" xlink:title="39B43C822E"/>
+    <presentationArc use="optional" xlink:title="presentation: label to NetLoss" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="NetLoss" xlink:type="arc" order="10.0"/>
+    <loc xlink:href="16ACFF7773" xlink:label="LossPerCommonShare" xlink:type="locator" xlink:title="850278BE4B"/>
+    <presentationArc use="optional" xlink:title="presentation: label to LossPerCommonShare" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="LossPerCommonShare" xlink:type="arc" order="11.0"/>
+    <loc xlink:href="CC98EA0ADA" xlink:label="LossPerCommonShareBasicAndDiluted" xlink:type="locator" xlink:title="7D032BA97D"/>
+    <presentationArc use="optional" xlink:title="presentation: label to LossPerCommonShareBasicAndDiluted" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="LossPerCommonShareBasicAndDiluted" xlink:type="arc" order="12.0"/>
+    <loc xlink:href="C146D9DBB2" xlink:label="WeightedAverageOfSharesOutstandingBasicAndDiluted" xlink:type="locator" xlink:title="DBA1A03FB2"/>
+    <presentationArc use="optional" xlink:title="presentation: label to WeightedAverageOfSharesOutstandingBasicAndDiluted" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="WeightedAverageOfSharesOutstandingBasicAndDiluted" xlink:type="arc" order="13.0"/>
+  </presentationLink>
+  <roleRef xlink:href="clri-20110608.xsd#DocumentRole" roleURI="http://cleartronic.com/2011-06-08/role/DocumentRole" xlink:type="simple"/>
+  <presentationLink xlink:type="extended" xlink:role="http://cleartronic.com/2011-06-08/role/DocumentRole">
+    <loc xlink:href="href" xlink:label="label" xlink:type="locator" xlink:title="title"/>
+    <loc xlink:href="8894DC3E1E" xlink:label="NetLoss" xlink:type="locator" xlink:title="36B642BD63"/>
+    <presentationArc use="optional" xlink:title="presentation: label to NetLoss" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="NetLoss" xlink:type="arc" order="0.0"/>
+    <loc xlink:href="15CE6D83F1" xlink:label="Depreciation" xlink:type="locator" xlink:title="948A3F2216"/>
+    <presentationArc use="optional" xlink:title="presentation: label to Depreciation" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="Depreciation" xlink:type="arc" order="1.0"/>
+    <loc xlink:href="0ED3D99C4F" xlink:label="CommonStockAndWarrantsIssuedForServices" xlink:type="locator" xlink:title="3EDC3B28A2"/>
+    <presentationArc use="optional" xlink:title="presentation: label to CommonStockAndWarrantsIssuedForServices" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="CommonStockAndWarrantsIssuedForServices" xlink:type="arc" order="2.0"/>
+    <loc xlink:href="DE61DCE621" xlink:label="LossOnSettlementAndDisposalOfAssets" xlink:type="locator" xlink:title="0486DB5729"/>
+    <presentationArc use="optional" xlink:title="presentation: label to LossOnSettlementAndDisposalOfAssets" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="LossOnSettlementAndDisposalOfAssets" xlink:type="arc" order="3.0"/>
+    <loc xlink:href="B21E6175D5" xlink:label="AmortizationOfNotesPayableDiscount" xlink:type="locator" xlink:title="DCB3727369"/>
+    <presentationArc use="optional" xlink:title="presentation: label to AmortizationOfNotesPayableDiscount" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="AmortizationOfNotesPayableDiscount" xlink:type="arc" order="4.0"/>
+    <loc xlink:href="33087C74A0" xlink:label="AccountsReceivable" xlink:type="locator" xlink:title="EA6DFB525A"/>
+    <presentationArc use="optional" xlink:title="presentation: label to AccountsReceivable" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="AccountsReceivable" xlink:type="arc" order="5.0"/>
+    <loc xlink:href="173C3ECD19" xlink:label="Inventory" xlink:type="locator" xlink:title="0FE8CFEAA9"/>
+    <presentationArc use="optional" xlink:title="presentation: label to Inventory" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="Inventory" xlink:type="arc" order="6.0"/>
+    <loc xlink:href="1B508105B9" xlink:label="PrepaidExpensesAndOtherCurrentAssets" xlink:type="locator" xlink:title="C3F610BB93"/>
+    <presentationArc use="optional" xlink:title="presentation: label to PrepaidExpensesAndOtherCurrentAssets" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="PrepaidExpensesAndOtherCurrentAssets" xlink:type="arc" order="7.0"/>
+    <loc xlink:href="D79E1A2BD6" xlink:label="AccountsPayable" xlink:type="locator" xlink:title="BBD2842559"/>
+    <presentationArc use="optional" xlink:title="presentation: label to AccountsPayable" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="AccountsPayable" xlink:type="arc" order="8.0"/>
+    <loc xlink:href="CF0B5EDD12" xlink:label="AccruedExpenses" xlink:type="locator" xlink:title="1D9813508C"/>
+    <presentationArc use="optional" xlink:title="presentation: label to AccruedExpenses" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="AccruedExpenses" xlink:type="arc" order="9.0"/>
+    <loc xlink:href="DEF94E7414" xlink:label="DeferredRevenue" xlink:type="locator" xlink:title="4B92C3EF79"/>
+    <presentationArc use="optional" xlink:title="presentation: label to DeferredRevenue" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="DeferredRevenue" xlink:type="arc" order="10.0"/>
+    <loc xlink:href="0A78A0E945" xlink:label="NetCashUsedInOperatingActivities" xlink:type="locator" xlink:title="E16CFAEDDC"/>
+    <presentationArc use="optional" xlink:title="presentation: label to NetCashUsedInOperatingActivities" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="NetCashUsedInOperatingActivities" xlink:type="arc" order="11.0"/>
+    <loc xlink:href="62C8F96C75" xlink:label="PurchaseOfPropertyAndEquipment" xlink:type="locator" xlink:title="079DE110A5"/>
+    <presentationArc use="optional" xlink:title="presentation: label to PurchaseOfPropertyAndEquipment" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="PurchaseOfPropertyAndEquipment" xlink:type="arc" order="12.0"/>
+    <loc xlink:href="DFD58BA61A" xlink:label="NetCashProvidedByInvestingActivities" xlink:type="locator" xlink:title="E415ABEBE4"/>
+    <presentationArc use="optional" xlink:title="presentation: label to NetCashProvidedByInvestingActivities" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="NetCashProvidedByInvestingActivities" xlink:type="arc" order="13.0"/>
+    <loc xlink:href="069DC26B6C" xlink:label="CashFlowsFromFinancingActivities" xlink:type="locator" xlink:title="325F0BDFE2"/>
+    <presentationArc use="optional" xlink:title="presentation: label to CashFlowsFromFinancingActivities" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="CashFlowsFromFinancingActivities" xlink:type="arc" order="14.0"/>
+    <loc xlink:href="800D1A0C70" xlink:label="PrincipalPaymentsOnNotesPayable" xlink:type="locator" xlink:title="BF4E65EC10"/>
+    <presentationArc use="optional" xlink:title="presentation: label to PrincipalPaymentsOnNotesPayable" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="PrincipalPaymentsOnNotesPayable" xlink:type="arc" order="15.0"/>
+    <loc xlink:href="1D80E08C96" xlink:label="ProceedsFromNotesPayableNet" xlink:type="locator" xlink:title="EAE9BD7B5D"/>
+    <presentationArc use="optional" xlink:title="presentation: label to ProceedsFromNotesPayableNet" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="ProceedsFromNotesPayableNet" xlink:type="arc" order="16.0"/>
+    <loc xlink:href="75DB498C0A" xlink:label="ProceedsFromIssuanceOfCommonStockAndWarrants" xlink:type="locator" xlink:title="D14D867BDA"/>
+    <presentationArc use="optional" xlink:title="presentation: label to ProceedsFromIssuanceOfCommonStockAndWarrants" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="ProceedsFromIssuanceOfCommonStockAndWarrants" xlink:type="arc" order="17.0"/>
+    <loc xlink:href="C2FDC53443" xlink:label="ProceedsFromIssuanceOfPreferredStock" xlink:type="locator" xlink:title="712F68B737"/>
+    <presentationArc use="optional" xlink:title="presentation: label to ProceedsFromIssuanceOfPreferredStock" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="ProceedsFromIssuanceOfPreferredStock" xlink:type="arc" order="18.0"/>
+    <loc xlink:href="D600E36A59" xlink:label="NetCashProvidedByFinancingActivities" xlink:type="locator" xlink:title="A5397D9F68"/>
+    <presentationArc use="optional" xlink:title="presentation: label to NetCashProvidedByFinancingActivities" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="NetCashProvidedByFinancingActivities" xlink:type="arc" order="19.0"/>
+    <loc xlink:href="69DF0F6C09" xlink:label="NetIncreaseInCash" xlink:type="locator" xlink:title="843A33F6CD"/>
+    <presentationArc use="optional" xlink:title="presentation: label to NetIncreaseInCash" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="NetIncreaseInCash" xlink:type="arc" order="20.0"/>
+    <loc xlink:href="39656C6D40" xlink:label="CashBeginningOfPeriod" xlink:type="locator" xlink:title="42785CB891"/>
+    <presentationArc use="optional" xlink:title="presentation: label to CashBeginningOfPeriod" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="CashBeginningOfPeriod" xlink:type="arc" order="21.0"/>
+    <loc xlink:href="E86DFCFD53" xlink:label="CashEndOfPeriod" xlink:type="locator" xlink:title="F9905922C4"/>
+    <presentationArc use="optional" xlink:title="presentation: label to CashEndOfPeriod" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="CashEndOfPeriod" xlink:type="arc" order="22.0"/>
+    <loc xlink:href="3264A7DF84" xlink:label="CashPaidForInterest" xlink:type="locator" xlink:title="A97347CF10"/>
+    <presentationArc use="optional" xlink:title="presentation: label to CashPaidForInterest" xlink:arcrole="http://www.xbrl.org/2003/arcrole/parent-child" xlink:from="label" xlink:to="CashPaidForInterest" xlink:type="arc" order="23.0"/>
+  </presentationLink>
+</linkbase>
