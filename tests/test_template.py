@@ -1,5 +1,5 @@
 from base import TestCase
-from template import Template
+from container.template import Template
 from datas.fact import Fact
 from datas.context import Context
 from datas.unit import Unit
