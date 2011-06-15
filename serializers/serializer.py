@@ -74,7 +74,13 @@ class Serializer(object):
 		"""Determines the documents that must be created
 		for a valid sec filing."""
 		others = []
-		return ['Instance', 'Schema'] + others
+
+		for (fact, unit), context, value in self.filing.data_stream:
+			if fact.is_calc:
+				others.append('Calculation')
+				break
+
+		return ['Instance', 'Schema', 'Presentation', 'Label'] + others
 	
 	def serialize(self, document, formatter=nodes):
 		"""Returns the serialized xml data in the specified format.
