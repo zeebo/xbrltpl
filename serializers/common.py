@@ -22,6 +22,7 @@ def gen_nsmap(filing, document):
 		'Schema':{
 			'link': 'http://www.xbrl.org/2003/linkbase',
 			'xlink': 'http://www.w3.org/1999/xlink',
+			'xbrli': 'http://www.xbrl.org/2003/instance',
 			'xsd': 'http://www.w3.org/2001/XMLSchema',
 		},
 		'Presentation':{

@@ -53,7 +53,12 @@ def schema_serializer(serializer):
 		}))
 	
 	#Create a custom element for everything
-	facts = set(fact for (fact, _), _, _ in filing.data_stream)
+	fact_table = {}
+	for (fact, _), _, _ in filing.data_stream:
+		fact_table[fact.label] = fact
+	
+	facts = fact_table.values()
+
 	with xml_namespace(maker, 'xsd', auto_convert=True) as maker:
 		for fact in facts:
 			schema.append(maker.element(**{
