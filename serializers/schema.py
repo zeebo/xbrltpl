@@ -30,7 +30,7 @@ def schema_serializer(serializer):
 		for base in bases:
 			appinfo.append(maker.linkbaseRef(**convert_attribs({
 				'xlink:type': 'simple',
-				'xlink:href': serializer.document_name(base, company),
+				'xlink:href': serializer.document_name(base),
 				'xlink:role': roles[base],
 				'xlink:arcrole': "http://www.w3.org/1999/xlink/properties/linkbase",
 			}, nsmap)))
@@ -44,9 +44,6 @@ def schema_serializer(serializer):
 	imports = {
 		"http://www.xbrl.org/2003/instance": "http://www.xbrl.org/2003/xbrl-instance-2003-12-31.xsd",
 		"http://xbrl.us/us-types/2009-01-31": "http://taxonomies.xbrl.us/us-gaap/2009/elts/us-types-2009-01-31.xsd",
-		"http://xbrl.us/dei/2009-01-31": "http://taxonomies.xbrl.us/us-gaap/2009/non-gaap/dei-2009-01-31.xsd",
-		"http://xbrl.us/us-gaap/negated/2008-03-31": "http://www.xbrl.org/lrr/role/negated-2008-03-31.xsd",
-		"http://xbrl.us/us-gaap/2009-01-31": "http://taxonomies.xbrl.us/us-gaap/2009/elts/us-gaap-2009-01-31.xsd",
 	}
 	for namespace, schemaLocation in imports.items():
 		#Terrible hack to get around import being a keyword
@@ -55,5 +52,16 @@ def schema_serializer(serializer):
 			'schemaLocation': schemaLocation,
 		}))
 	
-	#Need to determine and insert custom elements
+	#Create a custom element for everything
+	facts = set(fact for (fact, _), _, _ in filing.data_stream)
+	with xml_namespace(maker, 'xsd', auto_convert=True) as maker:
+		for fact in facts:
+			schema.append(maker.element(**{
+				'id': '{0}_{1}'.format(company.ticker, fact.label),
+				'name': fact.label,
+				'nillable': 'true',
+				'substitutionGroup': 'xbrli:item',
+				'type': 'xbrli:monetaryItemType',
+			}))
+	
 	return schema
