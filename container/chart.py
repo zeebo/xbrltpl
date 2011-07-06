@@ -7,22 +7,28 @@ from lxml_helpers.helpers import xml_namespace
 class Chart(object):
 	"""Chart class holds a template and data to go in it"""
 
-	def __init__(self, with_template=None, with_data=None, label='label', href='href', title='title'):
+	def __init__(self, with_template=None, with_data=None, title=None):
+		assert title is not None
+		
 		if with_template is not None:
 			self._template = with_template
 		else:
 			self._template = Template()
 		
 		self._data = defaultdict(lambda: None)
-		self._fact = Fact(**{
-			'label': label,
-			'href': href,
-			'title': title,
-		})
+		self._fact = None
+		self.title = title
 
 	def pickle(self):
 		import pickle
 		return pickle.dumps(self)
+
+	def bind(self, serializer):
+		self._fact = Fact(**{
+			'label': '{0}Abstract'.format(self.title),
+			'title': '{0}Abstract'.format(self.title),
+			'href': '{0}#{1}_{2}Abstract'.format(serializer.document_name('Schema'), serializer.filing.company.ticker, self.title)
+		})
 	
 	@property
 	def role(self):
@@ -30,6 +36,7 @@ class Chart(object):
 
 	@property
 	def loc_fact(self):
+		assert self._fact is not None, "Must bind chart before serializing its fact"
 		return self._fact
 	
 	@property
