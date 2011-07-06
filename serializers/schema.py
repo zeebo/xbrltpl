@@ -60,6 +60,20 @@ def schema_serializer(serializer):
 	facts = fact_table.values()
 
 	with xml_namespace(maker, 'xsd', auto_convert=True) as maker:
+		#append facts for the chart abstract facts
+		for chart in filing.charts:
+			fact = chart.loc_fact
+			schema.append(maker.element(**{
+				'id': '{0}_{1}'.format(company.ticker, fact.label),
+				'name': fact.label,
+				'type': 'xbrli:stringItemType',
+				'substritutionGroup': 'xbrli:item',
+				'nillable': 'true',
+				'abstract': 'true',
+				'xbrli:periodType': 'duration',
+			}))
+
+		#append the rest of the facts we need to define
 		for fact in facts:
 			schema.append(maker.element(**{
 				'id': '{0}_{1}'.format(company.ticker, fact.label),
