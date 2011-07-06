@@ -17,9 +17,9 @@ c1 = make_context(datetime.date(2009, 12, 31))
 u1 = Unit('USD', 'iso4217:USD')
 u2 = Unit('Shares', 'xbrli:shares')
 
-f1 = Fact(label='AssetsCurrent', namespace='us-gaap')
-f2 = Fact(label='OtherAssetsCurrent', namespace='us-gaap')
-f3 = Fact(with_calc=[(f1, 1), (f2, 1)], label='Assets', namespace='us-gaap')
+f1 = Fact(label='AssetsCurrent', namespace='isdr')
+f2 = Fact(label='OtherAssetsCurrent', namespace='isdr')
+f3 = Fact(with_calc=[(f1, 1), (f2, 1)], label='Assets', namespace='isdr')
   
 t = Template()
 t.add_context(c1)

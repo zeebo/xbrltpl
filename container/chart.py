@@ -7,13 +7,18 @@ from lxml_helpers.helpers import xml_namespace
 class Chart(object):
 	"""Chart class holds a template and data to go in it"""
 
-	def __init__(self, with_template=None, with_data=None):
+	def __init__(self, with_template=None, with_data=None, label='label', href='href', title='title'):
 		if with_template is not None:
 			self._template = with_template
 		else:
 			self._template = Template()
 		
 		self._data = defaultdict(lambda: None)
+		self._fact = Fact(**{
+			'label': label,
+			'href': href,
+			'title': title,
+		})
 
 	def pickle(self):
 		import pickle
@@ -22,14 +27,10 @@ class Chart(object):
 	@property
 	def role(self):
 		return self._template.role
-	
-	def make_loc_fact(self):
-		"""Return a Fact object that represents the base of this chart"""
-		return Fact(**{
-			'label': 'label',
-			'href': 'href',
-			'title': 'title',
-		})
+
+	@property
+	def loc_fact(self):
+		return self._fact
 	
 	@property
 	def data_stream(self):
