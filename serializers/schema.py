@@ -67,7 +67,7 @@ def schema_serializer(serializer):
 				'id': '{0}_{1}'.format(company.ticker, fact.label),
 				'name': fact.label,
 				'type': 'xbrli:stringItemType',
-				'substritutionGroup': 'xbrli:item',
+				'substitutionGroup': 'xbrli:item',
 				'nillable': 'true',
 				'abstract': 'true',
 				'xbrli:periodType': 'duration',
