@@ -41,6 +41,7 @@ def presentation_serializer(serializer):
 			})
 
 			linkbase.append(roleRef)
+			chart.bind(serializer)
 			linkbase.append(chart_serializer(chart, filing, maker))
 	
 	return linkbase
@@ -53,12 +54,11 @@ def chart_serializer(chart, filing, maker):
 			'xlink:role': role,
 		})
 
-		parent_fact = chart.make_loc_fact()
-		link.append(make_loc(parent_fact, maker))
+		link.append(make_loc(chart.loc_fact, maker))
 
 		for order, (n_parent, n_child) in enumerate(chart.walk_tree()):
 			if n_parent is None:
-				n_parent = (parent_fact, None)
+				n_parent = (chart.loc_fact, None)
 			
 			n_child, n_parent = n_child[0], n_parent[0]
 
