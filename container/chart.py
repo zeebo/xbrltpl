@@ -27,7 +27,7 @@ class Chart(object):
 		self._fact = Fact(**{
 			'label': '{0}Abstract'.format(self.title),
 			'title': '{0}Abstract'.format(self.title),
-			'href': '{0}#{1}_{2}Abstract'.format(serializer.document_name('Schema'), serializer.filing.company.ticker, self.title)
+			'href': '{0}#{1}Abstract'.format(serializer.document_name('Schema'), self.title)
 		})
 	
 	@property

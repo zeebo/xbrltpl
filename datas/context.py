@@ -11,7 +11,7 @@ class Context(object):
 		with xml_namespace(maker, 'xbrli'):
 			return maker.context(
 				maker.entity(
-					maker.identifier(cik,
+					maker.identifier('%010d' % int(cik),
 					scheme="http://www.sec.gov/CIK")
 				),
 				maker.period(

@@ -47,6 +47,10 @@ class Fact(object):
 	@cached_property
 	def title(self):
 		return uid()
+
+	@cached_property
+	def period(self):
+		return 'duration'
 		
 	def serialize(self, value, unit, context, maker):
 		with xml_namespace(maker, self.namespace) as maker:
@@ -55,6 +59,7 @@ class Fact(object):
 				**{
 					'contextRef': context.make_id(),
 					'unitRef': unit.id,
+					'decimals': '0',
 				}
 			)
 	
