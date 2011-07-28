@@ -66,12 +66,12 @@ class Template(object):
 	
 	def add_fact(self, fact, unit, parent=None):
 		assert isinstance(fact, Fact)
-		assert isinstance(unit, Unit)
+		assert isinstance(unit, Unit) or unit is None
 		self._tree[parent].append((fact, unit))
 	
 	def set_parent(self, fact, unit, parent, idx=None):
 		assert isinstance(fact, Fact)
-		assert isinstance(unit, Unit)
+		assert isinstance(unit, Unit) or unit is None
 
 		if idx is None:
 			idx = len(self._tree[parent])
@@ -82,7 +82,7 @@ class Template(object):
 	
 	def insert_fact(self, idx, fact, unit, parent=None):
 		assert isinstance(fact, Fact)
-		assert isinstance(unit, Unit)
+		assert isinstance(unit, Unit) or unit is None
 		self._tree[parent].insert(idx, (fact, unit))
 	
 	def del_fact(self, fact, unit):

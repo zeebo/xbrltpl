@@ -31,6 +31,13 @@ class Context(object):
 		if self.instant:
 			return 'i_{0}'.format(self.date_strings)
 		return 'd_{0}-{1}'.format(*self.date_strings)
+	
+	@property
+	def id(self):
+		if hasattr(self, '_id'):
+			return self._id
+		self._id = self.make_id()
+		return self._id
 
 def make_context(start, end=None):
 	if end is None:

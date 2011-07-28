@@ -43,3 +43,13 @@ class Filing(object):
 		for c in self.charts:
 			for data in c.data_stream:
 				yield data
+	
+	@property
+	def unique_data_stream(self):
+		facts = {}
+		for (fact, unit), context, value in self.data_stream:
+			facts[(fact.label, context.id)] = fact, unit, value, context
+		
+		for (flabel, cid) in facts:
+			fact, unit, value, context = facts[(flabel, cid)]
+			yield (fact, unit), context, value

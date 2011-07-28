@@ -75,10 +75,10 @@ class Serializer(object):
 		for a valid sec filing."""
 		others = []
 
-		for (fact, unit), context, value in self.filing.data_stream:
-			if fact.is_calc:
-				others.append('Calculation')
-				break
+		#for (fact, unit), context, value in self.filing.data_stream:
+		#	if fact.is_calc:
+		others.append('Calculation')
+		#		break
 
 		return ['Instance', 'Schema', 'Presentation', 'Label'] + others
 	

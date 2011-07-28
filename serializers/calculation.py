@@ -31,7 +31,7 @@ def calculation_serializer(serializer):
 			'xsi:schemaLocation': 'http://www.xbrl.org/2003/linkbase http://www.xbrl.org/2003/xbrl-linkbase-2003-12-31.xsd',
 			'xmlns': 'http://www.xbrl.org/2003/linkbase',
 		})
-		for chart in filter(lambda x: x.has_calculation_facts, filing.charts):
+		for chart in filing.charts:
 			roleRef = maker.roleRef(**{
 				'roleURI': convert_role_url(chart.role, filing),
 				'xlink:type': 'simple',

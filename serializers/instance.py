@@ -31,11 +31,11 @@ def instance_serializer(serializer):
 		xbrl.append(context.serialize(maker, company.cik))
 	
 	#Loop over units, appending to xbrl
-	for unit in set(filing.units):
+	for unit in set(filter(lambda x: x is not None, filing.units)):
 		xbrl.append(unit.serialize(maker))
 	
-	#Loop over facts appending to xbrl
-	for (fact, unit), context, value in filing.data_stream:
+	#Loop over facts and place them into dictionary based on fact, context
+	for (fact, unit), context, value in filing.unique_data_stream:
 		xbrl.append(fact.serialize(value, unit, context, maker))
 
 	return xbrl

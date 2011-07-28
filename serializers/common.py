@@ -18,22 +18,26 @@ def gen_nsmap(filing, document):
 			'xbrli': 'http://www.xbrl.org/2003/instance',
 			'iso4217': 'http://www.xbrl.org/2003/iso4217',
 			'xlink': 'http://www.w3.org/1999/xlink',
+			'dei': 'http://xbrl.us/dei/2009-01-31',
 		},
 		'Schema':{
 			'link': 'http://www.xbrl.org/2003/linkbase',
 			'xlink': 'http://www.w3.org/1999/xlink',
 			'xbrli': 'http://www.xbrl.org/2003/instance',
 			'xsd': 'http://www.w3.org/2001/XMLSchema',
+			'dei': 'http://xbrl.us/dei/2009-01-31',
 		},
 		'Presentation':{
 			'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
 			'xbrli': 'http://www.xbrl.org/2003/instance',
 			'xlink': 'http://www.w3.org/1999/xlink',
+			'dei': 'http://xbrl.us/dei/2009-01-31',
 		},
 		'Calculation':{
 			'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
 			'xbrli': 'http://www.xbrl.org/2003/instance',
 			'xlink': 'http://www.w3.org/1999/xlink',
+			'dei': 'http://xbrl.us/dei/2009-01-31',
 		},
 		'Label':{
 			'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
@@ -41,6 +45,7 @@ def gen_nsmap(filing, document):
 			'xbrli': 'http://www.xbrl.org/2003/instance',
 			'xlink': 'http://www.w3.org/1999/xlink',
 			'xml': 'http://www.w3.org/XML/1998/namespace',
+			'dei': 'http://xbrl.us/dei/2009-01-31',
 		},
 	}[document]
 	nsmap[filing.company.ticker] = filing_url(filing)

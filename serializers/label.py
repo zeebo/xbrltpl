@@ -43,17 +43,17 @@ def label_serializer(serializer):
 		})
 		
 		locs = set([])
-		for (fact, unit), context, data in filing.data_stream:
+		for (fact, unit), context, data in filing.unique_data_stream:
 			if fact.href not in locs:
 				labellink.append(make_loc(fact, maker, namespace='link'))
 				locs.add(fact.href)
 
 		facts = set([])
-		for (fact, unit), context, data in filing.data_stream:
-			if (fact, unit) in facts:
+		for (fact, unit), context, data in filing.unique_data_stream:
+			if (fact.label, unit) in facts:
 				continue
 			
-			facts.add((fact, unit))
+			facts.add((fact.label, unit))
 			utitle = 'label_{0}_{1}'.format(fact.title, uid())
 			labellink.append(make_label(fact, maker, utitle, namespace='link'))
 			labellink.append(make_labelArc(fact, maker, utitle, namespace='link'))

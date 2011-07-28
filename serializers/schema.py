@@ -41,8 +41,10 @@ def schema_serializer(serializer):
 				'id': chart.role
 			})
 
-			roleType.append(maker.definition('%04d - %s' % (10*(i+1), chart.role) ))
+			roleType.append(maker.definition('%04d - %s - %s' % (10*(i+1), chart.type, chart.role) ))
 			roleType.append(maker.usedOn('link:presentationLink'))
+			roleType.append(maker.usedOn('link:calculationLink'))
+			roleType.append(maker.usedOn('link:definitionLink'))
 
 			appinfo.append(roleType)
 	
@@ -64,6 +66,8 @@ def schema_serializer(serializer):
 	#Create a custom element for everything
 	fact_table = {}
 	for (fact, _), _, _ in filing.data_stream:
+		if fact.namespace != company.ticker:
+			continue
 		fact_table[fact.label] = fact
 	
 	facts = fact_table.values()
@@ -74,7 +78,7 @@ def schema_serializer(serializer):
 		for chart in filing.charts:
 			fact = chart.loc_fact
 			schema.append(maker.element(**{
-				'id': fact.label,
+				'id': '{0}_{1}'.format(company.ticker, fact.label),
 				'name': fact.label,
 				'type': 'xbrli:stringItemType',
 				'substitutionGroup': 'xbrli:item',

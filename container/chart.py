@@ -7,9 +7,10 @@ from lxml_helpers.helpers import xml_namespace
 class Chart(object):
 	"""Chart class holds a template and data to go in it"""
 
-	def __init__(self, with_template=None, with_data=None, title=None):
+	def __init__(self, with_template=None, with_data=None, title=None, chart_type=None):
 		assert title is not None
-		
+		assert chart_type is not None
+
 		if with_template is not None:
 			self._template = with_template
 		else:
@@ -18,6 +19,7 @@ class Chart(object):
 		self._data = defaultdict(lambda: None)
 		self._fact = None
 		self.title = title
+		self.type = chart_type
 
 	def pickle(self):
 		import pickle
@@ -27,7 +29,7 @@ class Chart(object):
 		self._fact = Fact(**{
 			'label': '{0}Abstract'.format(self.title),
 			'title': '{0}Abstract'.format(self.title),
-			'href': '{0}#{1}Abstract'.format(serializer.document_name('Schema'), self.title)
+			'href': '{0}#{1}_{2}Abstract'.format(serializer.document_name('Schema'), serializer.filing.company.ticker, self.title)
 		})
 	
 	@property

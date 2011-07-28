@@ -53,15 +53,15 @@ class Fact(object):
 		return 'duration'
 		
 	def serialize(self, value, unit, context, maker):
+		info = {
+			'contextRef': context.make_id(),
+		}
+		if unit is not None:
+			info['unitRef'] = unit.id
+			info['decimals'] = '0'
+		
 		with xml_namespace(maker, self.namespace) as maker:
-			return maker.__getattr__(self.label)(
-				'{0}'.format(value),
-				**{
-					'contextRef': context.make_id(),
-					'unitRef': unit.id,
-					'decimals': '0',
-				}
-			)
+			return maker.__getattr__(self.label)('{0}'.format(value), **info)
 	
 	@property
 	def is_calc(self):
