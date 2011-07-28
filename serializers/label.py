@@ -1,26 +1,27 @@
 from lxml.builder import ElementMaker
 from lxml_helpers.helpers import xml_namespace
 from common import gen_nsmap, convert_role_url, make_loc
+from helpers import uid
 import datetime
 
-def make_label(fact, maker, namespace=None):
+def make_label(fact, maker, utitle, namespace=None):
 	with xml_namespace(maker, namespace, auto_convert=True) as maker:
 		return maker.label(fact.label_text, **{
 			'xlink:type': 'resource',
-			'xlink:label': 'label_{0}'.format(fact.label),
+			'xlink:label': utitle,
 			'xlink:role': 'http://www.xbrl.org/2003/role/label',
 			'xlink:title': 'label_{0}'.format(fact.title),
 			'xml:lang': 'en',
-			'id': 'label_{0}'.format(fact.label),
+			'id': utitle,
 		})
 
-def make_labelArc(fact, maker, namespace=None):
+def make_labelArc(fact, maker, utitle, namespace=None):
 	with xml_namespace(maker, namespace, auto_convert=True) as maker:
 		return maker.labelArc(**{
 			'xlink:type': 'arc',
 			'xlink:arcrole': 'http://www.xbrl.org/2003/arcrole/concept-label',
 			'xlink:from': fact.label,
-			'xlink:to': 'label_{0}'.format(fact.label),
+			'xlink:to': utitle,
 			'xlink:title': 'label: {0} to label_{0}'.format(fact.label)
 		})
 
@@ -41,10 +42,21 @@ def label_serializer(serializer):
 			'xlink:role': 'http://www.xbrl.org/2003/role/link',
 		})
 		
+		locs = set([])
 		for (fact, unit), context, data in filing.data_stream:
-			labellink.append(make_loc(fact, maker, namespace='link'))
-			labellink.append(make_label(fact, maker, namespace='link'))
-			labellink.append(make_labelArc(fact, maker, namespace='link'))
+			if fact.href not in locs:
+				labellink.append(make_loc(fact, maker, namespace='link'))
+				locs.add(fact.href)
+
+		facts = set([])
+		for (fact, unit), context, data in filing.data_stream:
+			if (fact, unit) in facts:
+				continue
+			
+			facts.add((fact, unit))
+			utitle = 'label_{0}_{1}'.format(fact.title, uid())
+			labellink.append(make_label(fact, maker, utitle, namespace='link'))
+			labellink.append(make_labelArc(fact, maker, utitle, namespace='link'))
 
 		linkbase.append(labellink)
 

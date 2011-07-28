@@ -27,7 +27,7 @@ def instance_serializer(serializer):
 	xbrl.append(schemaRef)
 
 	#Loop over contexts, appending to xbrl
-	for context in filing.contexts:
+	for context in set(filing.contexts):
 		xbrl.append(context.serialize(maker, company.cik))
 	
 	#Loop over units, appending to xbrl
