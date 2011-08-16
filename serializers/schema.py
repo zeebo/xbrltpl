@@ -90,7 +90,7 @@ def schema_serializer(serializer):
 		#append the rest of the facts we need to define
 		for fact in facts:
 			schema.append(maker.element(**{
-				'id': fact.label,
+				'id': '{0}_{1}'.format(company.ticker, fact.label),
 				'name': fact.label,
 				'nillable': 'true',
 				'substitutionGroup': 'xbrli:item',
